@@ -39,15 +39,7 @@ export default function PersonaList() {
 
     return (
         <div>
-            <DataGrid
-                rows={personas}
-                columns={columns}
-                pageSize={6}
-                rowsPerPageOptions={[7]}
-                checkboxSelection
-                className='personaListTable'
-            />
-            de nada
+           
         </div>
     );
 }

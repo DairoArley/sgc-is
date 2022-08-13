@@ -15,7 +15,7 @@ export default function Sidebar() {
                             <Home className='sidebarIcon' />Inicio
                         </li>
                         <li className="sidebarListItem">
-                            <Timeline className='sidebarIcon' />Analitica
+                            <Timeline className='sidebarIcon' />Curriculum
                         </li>
                         <li className="sidebarListItem">
                             <BarChart className='sidebarIcon' />Ingresos

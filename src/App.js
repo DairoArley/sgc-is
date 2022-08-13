@@ -8,6 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 import PersonaList from "./pages/personaList/PersonaList";
+import Malla from "./pages/mallaCurricular/Malla";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home/>
+            </Route>
+            <Route exact path="/mallaCurricular">
+              <Malla/>
             </Route>
             <Route path="/personas">
               <PersonaList/>
