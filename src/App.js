@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import PersonaList from "./pages/personaList/PersonaList";
 import Malla from "./pages/mallaCurricular/Malla";
+import Curriculum from "./components/Subject/Curriculum";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
             </Route>
             <Route exact path="/mallaCurricular">
               <Malla/>
+            </Route>
+            <Route exact path="/curriculum">
+              <Curriculum role='student'/>
             </Route>
             <Route path="/personas">
               <PersonaList/>
