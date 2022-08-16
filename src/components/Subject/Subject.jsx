@@ -7,14 +7,10 @@ import {
 
 export function Subject({ name, cod, credits}) {
 
-const print = () => {
-    console.log(name, cod, credits);
-}
-
     return (
       <div className='w-44 mx-auto border-2 font-sans rounded-lg text-textColor text-center m-2'>
-        <div className='flex flex-row'>
-            <p className='text-lg font-bold'>{name}</p> 
+        <div className='flex flex-row items-center'>
+            <p className='text-lg font-bold mx-auto'>{name}</p> 
             <NavLink to={'/Curriculum'}>
             <IconButton aria-label="Example">
                     <FontAwesomeIcon icon={faEllipsisV} />
@@ -22,7 +18,7 @@ const print = () => {
             </NavLink>  
         </div>
             <p className='pt-2'>{cod}</p>
-            <p>{credits}</p>
+            <p className="text-textColor">creditos: {credits}</p>
       </div>
     );
   }

@@ -14,9 +14,11 @@ export default function Sidebar() {
                 <div className="sidebarMenu">
                     <h3 className="sidebarTitle"> Gestionar</h3>
                     <ul className="sidebarList">
+                        <NavLink to={'/'}>
                         <li className="sidebarListItem" active>
                             <Home className='sidebarIcon' />Inicio
                         </li>
+                        </NavLink>
                         <NavLink to={'/mallaCurricular'}>
                         <li className="sidebarListItem">
                             <Timeline className='sidebarIcon' />Curriculum
