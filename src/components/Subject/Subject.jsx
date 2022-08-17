@@ -5,10 +5,11 @@ import {
   NavLink
 } from "react-router-dom";
 
-export function Subject({ name, cod, credits}) {
+export function Subject({ name, cod, credits, color, onClick }) {
 
     return (
-      <div className='w-44 mx-auto border-2 font-sans rounded-lg text-textColor text-center m-2'>
+      <div className={`w-44 mx-auto border-2 font-sans rounded-lg text-textColor text-center m-2 ${color && "bg-textColor"}`} onClick={onClick}>
+
         <div className='flex flex-row items-center'>
             <p className='text-lg font-bold mx-auto'>{name}</p> 
             <NavLink to={'/Curriculum'}>
