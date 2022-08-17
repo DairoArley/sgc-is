@@ -23,8 +23,8 @@ export default function Sidebar() {
                         <li className="sidebarListItem">
                             <Report className='sidebarIcon' />Reportes
                         </li>
-                        <li className="sidebarListItem">
-                            <DynamicFeed className='sidebarIcon' />Transacciones
+                        <li className="sidebarListItem" >
+                            <DynamicFeed className='sidebarIcon' />Personas 
                         </li>
                     </ul>
                 </div>

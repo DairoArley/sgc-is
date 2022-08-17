@@ -1,53 +1,72 @@
-import { DataGrid } from '@mui/x-data-grid';
-import { useEffect, useState } from 'react';
-import './personaList.css';
+import "./personaList.css";
+import { DataGrid } from "@material-ui/data-grid";
+import { DeleteOutline } from "@material-ui/icons";
+import { userRows } from "../../DummyData";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const columns = [
-    { field: 'id', headerName: 'numeroID', width: 80 },
-    { field: 'firstName', headerName: 'Primer nombre', width: 130 },
-    { field: 'lastName', headerName: 'Último nombre', width: 130 },
+export default function PersonList() {
+  const [data, setData] = useState(userRows);
+
+  const handleDelete = (id) => {
+    setData(data.filter((item) => item.id !== id));
+  };
+  
+  const columns = [
+    { field: "id", headerName: "ID", width: 90 },
     {
-        field: 'fullName',
-        headerName: 'Nombre completo',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 160,
-        valueGetter: (params) =>
-            `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+      field: "user",
+      headerName: "User",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="userListUser">
+            <img className="userListImg" src={params.row.avatar} alt="" />
+            {params.row.username}
+          </div>
+        );
+      },
     },
-];
-
-const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon' },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei' },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime' },
-];
-
-export default function PersonaList() {
-    const url = 'http://localhost:3306/persona/getAll'
-
-    const [personas, setPersonas] = useState()
-    const fetchApi = async () => {
-        const response = await fetch(url);
-        console.log(response.json);
-        const responseJSON = await response.json();
-        setPersonas(responseJSON)
-    }
-    useEffect(() => {
-        fetchApi()
-    }, [])
-
-    return (
-        <div>
-            <DataGrid
-                rows={personas}
-                columns={columns}
-                pageSize={6}
-                rowsPerPageOptions={[7]}
-                checkboxSelection
-                className='personaListTable'
+    { field: "email", headerName: "Email", width: 200 },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 120,
+    },
+    {
+      field: "transaction",
+      headerName: "Transaction Volume",
+      width: 160,
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <>
+            <Link to={"/user/" + params.row.id}>
+              <button className="userListEdit">Edit</button>
+            </Link>
+            <DeleteOutline
+              className="userListDelete"
+              onClick={() => handleDelete(params.row.id)}
             />
-            de nada
-        </div>
-    );
+          </>
+        );
+      },
+    },
+  ];
+
+  return (
+    <div className="userList">
+      <DataGrid
+        rows={data}
+        disableSelectionOnClick
+        columns={columns}
+        pageSize={8}
+        checkboxSelection
+      />
+    </div>
+  );
 }
