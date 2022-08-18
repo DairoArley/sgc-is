@@ -10,10 +10,10 @@ import { useEffect, useState } from "react";
 export function Subject({ name, cod, credits, onClick, selectedSubject }) {
 
 
-  const stylePre ='w-44 mx-auto border-5 font-sans rounded-lg text-black text-center m-2 bg-textColor';
-  const styleCo = 'w-44 mx-auto border-2 font-sans rounded-lg text-white text-center m-2 bg-textColor';
-  const styleNormal = 'w-44 mx-auto border-2 font-sans rounded-lg text-textColor text-center m-2';
-  const styleSelectSubject = 'w-44 mx-auto border-4 font-sans rounded-lg text-textColor text-center m-2'
+  const stylePre ='w-44 mx-auto border-2 font-sans rounded-lg text-black text-center m-2 bg-preColor';
+  const styleCo = 'w-44 mx-auto border-2 font-sans rounded-lg text-white text-center m-2 bg-corColor';
+  const styleNormal = 'w-44 mx-auto bg-cardSubjectColor border-b font-sans rounded-lg text-textColor text-center m-2 drop-shadow-xl';
+  const styleSelectSubject = 'w-44 mx-auto border-2 border-preColor font-sans rounded-lg text-textColor text-center m-2'
 
   const [style, setStyle] = useState(styleNormal);
   
@@ -42,16 +42,16 @@ export function Subject({ name, cod, credits, onClick, selectedSubject }) {
 
     return (
       <div id={cod} className={style} onClick={onClick}>
-        <div className='flex flex-row items-center'>
-            <p className='text-lg font-bold mx-auto'>{name}</p> 
+        <div className='flex h-16 flex-row items-center'>
+            <p className='text-xs font-bold mx-auto'>{name}</p> 
             <NavLink to={'/Curriculum'}>
             <IconButton aria-label="Example">
                     <FontAwesomeIcon icon={faEllipsisV} />
                 </IconButton>
             </NavLink>  
         </div>
-            <p className='pt-2'>{cod}</p>
-            <p className="text-textColor">creditos: {credits}</p>
+            <p className='pt-2 items-center'>{cod}</p>
+            <p className="text-textColor items-center">creditos: {credits}</p>
       </div>
     );
   }
