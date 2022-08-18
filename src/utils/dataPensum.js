@@ -6,7 +6,7 @@ export const subject2 =[
         "facultad": 25,
         "indicadorVersionActual": "S",
         "materia": 2508120,
-        "nivel": 1,
+        "nivel":1, 
         "nombreBancoElectiva": " ",
         "nombreMateria": "INTRODUCCIÓN A LA INGENIERÍA DE SISTEMAS",
         "nombrePrograma": "INGENIERÍA DE SISTEMAS",

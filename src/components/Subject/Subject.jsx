@@ -7,12 +7,10 @@ import {
 import { useEffect, useState } from "react";
 
 
-
-
 export function Subject({ name, cod, credits, onClick, selectedSubject }) {
 
 
-  const stylePre ='w-44 mx-auto border-2 font-sans rounded-lg text-black text-center m-2 bg-textColor';
+  const stylePre ='w-44 mx-auto border-5 font-sans rounded-lg text-black text-center m-2 bg-textColor';
   const styleCo = 'w-44 mx-auto border-2 font-sans rounded-lg text-white text-center m-2 bg-textColor';
   const styleNormal = 'w-44 mx-auto border-2 font-sans rounded-lg text-textColor text-center m-2';
   const styleSelectSubject = 'w-44 mx-auto border-4 font-sans rounded-lg text-textColor text-center m-2'
@@ -24,25 +22,22 @@ export function Subject({ name, cod, credits, onClick, selectedSubject }) {
     if(selectedSubject && selectedSubject.materia === cod ){
       setStyle(styleSelectSubject);
     }else if(selectedSubject && selectedSubject.requisitos){
-      selectedSubject.requisitos.forEach(function(requisito) {
-        if(requisito.materiaRequisito === cod){    
-          console.log(requisito);
-          if(requisito.tipoRequisito === 'CORREQ'){
-              setStyle(styleCo);
-            }else if(requisito.tipoRequisito === 'PRERREQ'){
-              setStyle(stylePre);
-              }
-        }else{
-          setStyle(styleNormal);
+      setStyle(styleNormal);
+        for(let i = 0; i < selectedSubject.requisitos.length; i++){
+          if(selectedSubject.requisitos[i] && selectedSubject.requisitos[i].materiaRequisito === cod){
+            if(selectedSubject.requisitos[i].tipoRequisito === 'CORREQ' ){
+                setStyle(styleCo);
+            }else{
+                setStyle(stylePre);
+            }
         }
-      }
-      );
+      }  
     }
     else{
       setStyle(styleNormal);
     }
    
-  }, [selectedSubject]);
+  }, [selectedSubject, cod]);
   
 
     return (
