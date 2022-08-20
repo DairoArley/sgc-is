@@ -1,8 +1,6 @@
 import React from 'react'
 import './sidebar.css'
 import { Home, Timeline, TrendingUp, BarChart, DynamicFeed, Report } from "@material-ui/icons";
-//import CalendarViewMonthIcon from '@mui/icons-material/CalendarViewMonth';
-
 
 export default function Sidebar() {
     return (
