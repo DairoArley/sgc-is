@@ -11,6 +11,7 @@ module.exports = {
       preColor:'#c4e86b',
       corColor:'#ffc656',
       cardSubjectColor:'#f3f3f3',
+      black:'#000',
 
     },
     extend: {},
