@@ -1,9 +1,9 @@
 import React from 'react'
 
-const InputFormat = ({titleInput, nameInput, valueInput, placeholderMessage, readOnly, method, dataForm}) => {
+const InputFormat = ({titleInput, nameInput, valueInput, placeholderMessage, readOnly, method, dataForm, wi}) => {
  
-    const styleInputs = "w-1/2 md:w-3/5 border-0 rounded-lg hover:border-2 hover:font-thin mx-auto ml-2 items-center text-black";
-    const styleText = "flex text-sm md:text-lg mt-2";
+    const styleInputs =`w-1/2 md:w-${wi} border-0 rounded-lg mx-auto ml-2 text-sm items-center text-black`;
+    const styleText = "flex text-sm md:text-lg mt-8";
  
     return (
     <span className={styleText}>
