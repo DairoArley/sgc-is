@@ -1,17 +1,15 @@
-
 import GeneralInformation from "./GeneralInformation";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import SpecificInformation from "./SpecificInformation";
 
 const SubjectInformation = ({ readOnly }) => {
-
-
   return (
     <div>
-    <Accordion>
+      <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -29,13 +27,10 @@ const SubjectInformation = ({ readOnly }) => {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography>Accordion 2</Typography>
+          <Typography>Información Específica</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <SpecificInformation/>
         </AccordionDetails>
       </Accordion>
       <Accordion disabled>
@@ -47,7 +42,7 @@ const SubjectInformation = ({ readOnly }) => {
           <Typography>Disabled Accordion</Typography>
         </AccordionSummary>
       </Accordion>
-  </div>
+    </div>
   );
 };
 

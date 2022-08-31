@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import DialogContent from "@mui/material/DialogContent";
+import { FormLabel, RadioGroup } from "@mui/material";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
 
 const GeneralInformation = ({ readOnly }) => {
   const [formData, setFormData] = useState({
@@ -116,8 +119,8 @@ const GeneralInformation = ({ readOnly }) => {
           </DialogContent>
         </div>
 
-        <div className="md:flex">
-          <span className="flex text-sm mt-8">
+        <div className="flex flex-wrap lg:flex--row">
+          <span className="pl-5 pr-2 pb-2 pt-2">
             Área o componente de formación del currículo :
             <select
               name="select"
@@ -130,7 +133,7 @@ const GeneralInformation = ({ readOnly }) => {
             </select>
           </span>
 
-          <span className="flex text-sm mt-8">
+          <span className="pl-5 pr-2 pb-2 pt-2">
             Tipo de curso :
             <select
               name="select"
@@ -143,7 +146,7 @@ const GeneralInformation = ({ readOnly }) => {
             </select>
           </span>
 
-          <span className="flex text-sm mt-8">
+          <span className="pl-5 pr-2 pb-2 pt-2">
             Modalidad :
             <select
               name="select"
@@ -196,6 +199,50 @@ const GeneralInformation = ({ readOnly }) => {
               label="Horas trabajo independiente"
               //placeholder="Escriba nombre de la Unidad Académica."
               type="number"
+              variant="standard"
+              className="w-full"
+            />
+          </DialogContent>
+          <FormLabel>Características del curso :</FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue=""
+            name="radio-buttons-group"
+          >
+            <FormControlLabel
+              value="option1"
+              control={<Radio />}
+              label="Validable"
+              className="pl-5"
+            />
+            <FormControlLabel value="option2" control={<Radio />} label="Habilitable" className="pl-5"/>
+            <FormControlLabel value="option3" control={<Radio />} label="Clasificable" className="pl-5"/>
+            <FormControlLabel value="option4" control={<Radio />} label="Evaluación de suficiencia" className="pl-5"/>
+          </RadioGroup>
+          <DialogContent className="sm:w-1/2 lg:w-2/5">
+            <TextField
+              sx={{
+                label: { color: "#09612d", fontWeight: "bold" },
+                input: { fontWeight: "bold" },
+              }}
+              autoFocus
+              label="Profesor(a) que elaboró"
+              //placeholder="Escriba nombre de la Unidad Académica."
+              type="text"
+              variant="standard"
+              className="w-full"
+            />
+          </DialogContent>
+          <DialogContent className="sm:w-1/2 lg:w-1/3">
+            <TextField
+              sx={{
+                label: { color: "#09612d", fontWeight: "bold" },
+                input: { fontWeight: "bold" },
+              }}
+              autoFocus
+              label="Correo electrónico"
+              //placeholder="Escriba nombre de la Unidad Académica."
+              type="email"
               variant="standard"
               className="w-full"
             />
