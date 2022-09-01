@@ -5,8 +5,9 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SpecificInformation from "./SpecificInformation";
+import ContentSubjects from "./ContentSubjects";
 
-const SubjectInformation = ({ readOnly }) => {
+const SubjectInformation = ({idSubjectSelected, readOnly }) => {
   return (
     <div>
       <Accordion>
@@ -33,6 +34,19 @@ const SubjectInformation = ({ readOnly }) => {
           <SpecificInformation/>
         </AccordionDetails>
       </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography>Contenido</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ContentSubjects idSubjectSelected= {idSubjectSelected}/>
+        </AccordionDetails>
+      </Accordion>
+
       <Accordion disabled>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
