@@ -1,8 +1,12 @@
+import { list } from "postcss";
 import React from "react";
 import { useEffect } from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-const ContentSubjects = ({idSubjectSelected}) => {
+const ContentSubjects = ({ idSubjectSelected }) => {
   const [listUnits, setListUnits] = React.useState([]);
+
+  const [topics, setTopics] = React.useState([]);
 
   const units = [
     {
@@ -27,33 +31,21 @@ const ContentSubjects = ({idSubjectSelected}) => {
     },*/
   ];
 
+  const Listtopics = [
+    { id: 1, unidad: "1", name: "Automatas" },
+    { id: 2, unidad: "2", name: "Lenguajes" },
+    { id: 3, unidad: "3", name: "Estructuras de Datos" },
+    { id: 4, unidad: "4", name: "Estructuras de Control" },
+    { id: 5, unidad: "5", name: "Programación" },
+  ];
+
   useEffect(() => {
-    setListUnits(units);
+    //setListUnits(units);
+    setTopics(Listtopics);
   }, []);
 
-  /*
-  return (
-    <div className="ml-2 mx-auto md:w-full font-sans rounded-lg text-textColor text-md">
-      {units.map((element) => {
-        return (
-          <div key={element.id}>
-            {element.topics.map((topic) => {
-              return (
-                <div key={topic.id}>
-                  <li className="text-textColor font-bold">
-                    {topic.unidad}
-                    <input type="text"  className="ml-2" value={topic.name}/>
-                  </li>
-                </div>
-              );
-            })}
-          </div>
-        );
-      })}
-    </div>
-  );*/
   const deleteOneUnit = (idUnit, idSubject) => {
-    let c = 1;
+    /*let c = 1;
     let newUnits = listUnits[0].topics.filter((topic) => topic.id !== idUnit);
 
     newUnits = newUnits.map((topic) => {
@@ -69,54 +61,74 @@ const ContentSubjects = ({idSubjectSelected}) => {
         id: listUnits.id,
         topics: newUnits,
       },
-    ]);
+    ]);*/
+
+    let newTopics = topics.filter((topic) => topic.id !== idUnit);
+    let c = 1;
+    newTopics = newTopics.map((topic) => {
+      topic.id = c;
+      topic.unidad = c;
+      c++;
+      return topic;
+    });
+
+    console.log(newTopics);
+
+    setTopics(newTopics);
   };
 
   const addElement = () => {
-    //setListUnits([...listUnits, {id: listUnits.length + 1, topics: []}]);
-
-    let newTopic = [
-        {
-          id: listUnits[0].id,
-          topics: listUnits[0].topics,
-        },
+    /*let newTopic = [
+      {
+        id: listUnits[0].id,
+        topics: listUnits[0].topics,
+      },
     ];
-    
+
     console.log(newTopic[0]);
 
-    newTopic[0].topics.push({ 
-        id: listUnits[0].topics.length + 1,
-        unidad: String(listUnits[0].topics.length + 1),
-        name: "",});
+    newTopic[0].topics.push({
+      id: listUnits[0].topics.length + 1,
+      unidad: String(listUnits[0].topics.length + 1),
+      name: "",
+    });
 
     setListUnits(newTopic);
   };
 
+  const imprimir = () => {
+    console.log("first");*/
+
+    let newTopic = [
+      { id: topics.length + 1, unidad: String(topics.length + 1), name: "" },
+    ];
+    setTopics([...topics, newTopic[0]]);
+  };
+
   return (
-    <div className="ml-2 mx-auto md:w-full font-sans rounded-lg text-textColor text-lg font-bold">
-      {listUnits.map((element) => {
+    <div className="ml-2 mx-auto w-full font-sans rounded-lg text-textColor text-lg font-bold text-center">
+      {topics.map((topic) => {
         return (
-          <div key={element.id}>
-            {element.topics.map((topic) => {
-              return (
-                <div key={topic.id}>
-                  <li className="text-textColor font-bold">
-                    {topic.id}
-                    <input type="text" className="ml-2" value={topic.name} />
-                    <button
-                      type="button"
-                      onClick={() => deleteOneUnit(topic.id, element.id)}
-                    >
-                      Delete
-                    </button>
-                  </li>
-                </div>
-              );
-            })}
+          <div key={topic.id}>
+            <div className="w-full flex flex-row items-center justify-center">
+              <li>
+                <input
+                  className="w-3/4 border-2 text-textColor border-preColor h-10 px-5 pr-16 mb-2 rounded-lg text-sm focus:outline-none mr-2"
+                  type="text"
+                  name="topic"
+                  value={topic.name}
+                  //onChange={(e) => setTopics({...topics, topic: e.target.value})}
+                />
+                <DeleteIcon onClick={() => deleteOneUnit(topic.id)} />
+              </li>
+            </div>
           </div>
         );
       })}
-      <button type="button" onClick={() => addElement()}>Add</button>
+
+      <button type="button"  onClick={() => addElement()} className="bg-textColor text-white border-2 rounded-lg w-40 ml-6">
+        Agregar unidad
+      </button>
     </div>
   );
 };

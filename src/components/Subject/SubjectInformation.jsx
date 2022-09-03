@@ -40,7 +40,7 @@ const SubjectInformation = ({idSubjectSelected, readOnly }) => {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography>Contenido</Typography>
+          <Typography>Contenido Resumido</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <ContentSubjects idSubjectSelected= {idSubjectSelected}/>
