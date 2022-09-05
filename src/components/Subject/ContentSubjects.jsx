@@ -107,7 +107,9 @@ const ContentSubjects = ({ idSubjectSelected }) => {
 
   return (
     <div className="ml-2 mx-auto w-full font-sans rounded-lg text-textColor text-lg font-bold text-center">
-      {topics.map((topic) => {
+      {
+      
+      topics.map((topic) => {
         return (
           <div key={topic.id}>
             <div className="w-full flex flex-row items-center justify-center">
@@ -117,7 +119,7 @@ const ContentSubjects = ({ idSubjectSelected }) => {
                   type="text"
                   name="topic"
                   value={topic.name}
-                  //onChange={(e) => setTopics({...topics, topic: e.target.value})}
+                 // onChange={(e) => setTopics({...topics, topic.name: e.target.value})}
                 />
                 <DeleteIcon onClick={() => deleteOneUnit(topic.id)} />
               </li>

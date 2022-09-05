@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SpecificInformation from "./SpecificInformation";
 import ContentSubjects from "./ContentSubjects";
+import TeachersInformation from "./TeachersInformation";
 
 const SubjectInformation = ({idSubjectSelected, readOnly }) => {
   return (
@@ -44,6 +45,19 @@ const SubjectInformation = ({idSubjectSelected, readOnly }) => {
         </AccordionSummary>
         <AccordionDetails>
           <ContentSubjects idSubjectSelected= {idSubjectSelected}/>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography>Actividades Evaluativas</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <TeachersInformation idSubjectSelected= {idSubjectSelected}/>
         </AccordionDetails>
       </Accordion>
 
