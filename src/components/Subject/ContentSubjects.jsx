@@ -1,4 +1,3 @@
-import { list } from "postcss";
 import React from "react";
 import { useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -105,11 +104,34 @@ const ContentSubjects = ({ idSubjectSelected }) => {
     setTopics([...topics, newTopic[0]]);
   };
 
+  const handleChange = (e, idUnit) => {
+    const value = e.target.value;
+    const topicChange = topics.map((topic) => {
+      if (topic.id === idUnit) {
+        topic.name = value.replace(/[^a-z]/gi, "");
+      }
+      return topic;
+    });
+
+    setTopics(topicChange);
+  };
+
+
+  const validate = () => {
+    let valid = true;
+    topics.map((topic) => {
+      if (topic.name === "") {
+        valid = false;
+      }
+    });
+    console.log(valid)
+    return valid;
+  };
+
   return (
     <div className="ml-2 mx-auto w-full font-sans rounded-lg text-textColor text-lg font-bold text-center">
-      {
-      
-      topics.map((topic) => {
+      <form onSubmit={validate}>
+      {topics.map((topic) => {
         return (
           <div key={topic.id}>
             <div className="w-full flex flex-row items-center justify-center">
@@ -119,7 +141,7 @@ const ContentSubjects = ({ idSubjectSelected }) => {
                   type="text"
                   name="topic"
                   value={topic.name}
-                 // onChange={(e) => setTopics({...topics, topic.name: e.target.value})}
+                  onChange={(e) => handleChange(e, topic.id)}
                 />
                 <DeleteIcon onClick={() => deleteOneUnit(topic.id)} />
               </li>
@@ -128,9 +150,21 @@ const ContentSubjects = ({ idSubjectSelected }) => {
         );
       })}
 
-      <button type="button"  onClick={() => addElement()} className="bg-textColor text-white border-2 rounded-lg w-40 ml-6">
+      <button
+        type="button"
+        onClick={() => addElement()}
+        className="bg-textColor text-white border-2 rounded-lg w-40 ml-6"
+      >
         Agregar unidad
       </button>
+
+      <button
+        type="submit"
+        className="bg-textColor text-white border-2 rounded-lg w-44 mt-4"
+      >
+        Guardar
+      </button>
+      </form>
     </div>
   );
 };
