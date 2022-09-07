@@ -1,145 +1,236 @@
-import React, { useEffect } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
+import React from "react";
+import DialogContent from "@mui/material/DialogContent";
+import TextField from "@mui/material/TextField";
 
 const TeachersInformation = ({ idSubjectSelected }) => {
-  const [activities, setActivities] = React.useState([
-    { nameActivity: "", percentage: "" },
+  const [teachers, setTeachers] = React.useState([
+    {
+      fullName: "",
+      dependency: "",
+      studyLevel: "",
+      modality: "",
+      unit: "",
+      hours: "",
+      dates: "",
+    },
   ]);
 
-  const data = [
+  const [temporalTeachers, setTemporalTeachers] = React.useState([
     {
-      id: 1,
-      nameActivity: "Tareas",
-      percentage: "20",
+      fullName: "",
+      dependency: "",
+      studyLevel: "",
+      modality: "",
+      unit: "",
+      hours: "",
+      dates: "",
     },
-    { id: 2, nameActivity: "Exámenes", percentage: "30" },
-    { id: 3, nameActivity: "Proyectos", percentage: "50" },
-  ];
+  ]);
 
-  useEffect(() => {
-    setActivities(data);
-  }, []);
 
-  const deleteOneActivity = (idActivity) => {
-    let newActivities = activities.filter(
-      (activity) => activity.id !== idActivity
-    );
-    let c = 1;
-    newActivities = newActivities.map((activity) => {
-      activity.id = c;
-      c++;
-      return activity;
-    });
-    setActivities(newActivities);
-  };
 
-  const addActivity = () => {
-    setActivities([...activities, { nameActivity: "", percentage: "" }]);
-  };
-
-  const handleChange = (e, id, flag) => {
-    const value = e.target.value;
-    const activityChange = activities.map((activity) => {
-      if (flag === 1) {
-        if (activity.id === id) {
-          activity.nameActivity = value;
+  const validar = () => {
+    setTemporalTeachers(teachers);
+    setTeachers(
+        {
+          fullName: "",
+          dependency: "",
+          studyLevel: "",
+          modality: "",
+          unit: "",
+          hours: "",
+          dates: "",
         }
-        return activity;
-      } else {
-        if (activity.id === id) {
-          activity.percentage = value;
-          if (activity.percentage > 100 || activity.percentage < 0) {
-            activity.percentage = 0;
-          }
-        }
-        return activity;
-      }
-    });
-
-    setActivities(activityChange);
-  };
-
-  const validate = () => {
-    let sum = 0;
-    activities.forEach((activity) => {
-      sum += parseInt(activity.percentage);
-    });
-    if (sum === 100) {
-      return true;
-    } else {
-      return false;
-    }
+      )
   };
 
   return (
-    <div className="mx-auto w-full font-sans text-textColor text-lg font-bold text-center">
-      <form onSubmit={validate}>
-        <div className="flex flex-col">
-          <div>
-            <table className="border-2 rounded-sm mx-auto text-blue-600/100">
-              <tr className="border-2 rounded-sm">
-                <th>Actividad</th>
-                <th className="pl-4">Porcentaje</th>
-              </tr>
-              {activities.map((activity) => (
-                <tr>
-                  <td>
-                    <input
-                      className="border-2 text-textColor border-preColor h-10 mb-2 mt-2 rounded-lg text-sm focus:outline-none ml-2"
-                      type="text"
-                      value={activity.nameActivity}
-                      onChange={(e) => handleChange(e, activity.id, 1)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      className="border-2 text-textColor border-preColor w-10 text-center h-10 mb-2 mt-2 rounded-lg text-sm focus:outline-none ml-2"
-                      type="number"
-                      value={activity.percentage}
-                      onChange={(e) => handleChange(e, activity.id, 0)}
-                    />
-                  </td>
+    <div>
+      <form>
+        <div className="flex flex-wrap lg:flex-row w-full">
+          <DialogContent className="sm:w-1/2 lg:w-1/3">
+            <TextField
+              sx={{
+                label: { color: "#09612d", fontWeight: "bold" },
+                input: { fontWeight: "bold" },
+              }}
+              autoFocus
+              value={teachers.fullName}
+              label="Nombre completo"
+              type="text"
+              variant="standard"
+              className="w-full"
+              onChange={(e) => {
+                const teacherChange = teachers.map((teacher) => {
+                  teacher.fullName = e.target.value;
+                  return teacher;
+                });
+                setTeachers(teacherChange);
+              }}
+            />
+          </DialogContent>
+          <DialogContent className="sm:w-1/2 lg:w-1/3">
+            <TextField
+              sx={{
+                label: { color: "#09612d", fontWeight: "bold" },
+                input: { fontWeight: "bold" },
+              }}
+              autoFocus
+              value={teachers.dependency}
+              label="Dependencia"
+              type="text"
+              variant="standard"
+              className="w-full"
+              onChange={(e) => {
+                const teacherChange = teachers.map((teacher) => {
+                  teacher.dependency = e.target.value;
+                  return teacher;
+                });
+                setTeachers(teacherChange);
+              }}
+            />
+          </DialogContent>
+          <DialogContent className="sm:w-1/2 lg:w-1/3">
+            <TextField
+              sx={{
+                label: { color: "#09612d", fontWeight: "bold" },
+                input: { fontWeight: "bold" },
+              }}
+              autoFocus
+              value={teachers.studyLevel}
+              label="Formación académica"
+              type="text"
+              variant="standard"
+              className="w-full"
+              onChange={(e) => {
+                const teacherChange = teachers.map((teacher) => {
+                  teacher.studyLevel = e.target.value;
+                  return teacher;
+                });
+                setTeachers(teacherChange);
+              }}
+            />
+          </DialogContent>
+          <DialogContent className="sm:w-1/2 lg:w-1/3">
+            <TextField
+              sx={{
+                label: { color: "#09612d", fontWeight: "bold" },
+                input: { fontWeight: "bold" },
+              }}
+              autoFocus
+              value={teachers.modality}
+              label="Modalidad de participación"
+              type="text"
+              variant="standard"
+              className="w-full"
+              onChange={(e) => {
+                const teacherChange = teachers.map((teacher) => {
+                  teacher.modality = e.target.value;
+                  return teacher;
+                });
+                setTeachers(teacherChange);
+              }}
+            />
+          </DialogContent>
+          <DialogContent className="w-1/6">
+            <TextField
+              sx={{
+                label: { color: "#09612d", fontWeight: "bold", width: "100%" },
+                input: { fontWeight: "bold", width: "100%" },
+                div: { width: "50%" },
+              }}
+              autoFocus
+              value={teachers.unit}
+              label="Unidad N°"
+              type="number"
+              variant="standard"
+              className="w-full"
+              onChange={(e) => {
+                const teacherChange = teachers.map((teacher) => {
+                  teacher.unit = e.target.value;
+                  return teacher;
+                });
+                setTeachers(teacherChange);
+              }}
+            />
+          </DialogContent>
+          <DialogContent className="w-1/6">
+            <TextField
+              sx={{
+                label: { color: "#09612d", fontWeight: "bold", width: "50%" },
+                input: { fontWeight: "bold", width: "100%" },
+                div: { width: "50%" },
+              }}
+              autoFocus
+              value={teachers.hours}
+              label="N° Horas"
+              type="number"
+              variant="standard"
+              className="w-full"
+              onChange={(e) => {
+                const teacherChange = teachers.map((teacher) => {
+                  teacher.hours = e.target.value;
+                  return teacher;
+                });
+                setTeachers(teacherChange);
+              }}
+            />
+          </DialogContent>
+          <DialogContent className="w-1/6 sm:w-1/3 mt-4">
+            <TextField
+              sx={{
+                label: { color: "#09612d", fontWeight: "bold", width: "100%" },
+                input: { fontWeight: "bold", width: "100%" },
+                div: { width: "50%" },
+              }}
+              autoFocus
+              value={teachers.dates}
+              type="date"
+              variant="standard"
+              className="w-full"
+              onChange={(e) => {
+                const teacherChange = teachers.map((teacher) => {
+                  teacher.dates = e.target.value;
+                  return teacher;
+                });
+                setTeachers(teacherChange);
+              }}
+            />
+          </DialogContent>
 
-                  <td>
-                    <DeleteIcon
-                      onClick={() => deleteOneActivity(activity.id)}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </table>
-
-            <button
-              type="button"
-              onClick={() => addActivity()}
-              className="bg-textColor text-white border-2 rounded-lg w-44 mt-4"
-            >
-              Agregar Actividad
-            </button>
-          </div>
-          <br />
-          <span>Actividades de asistencia obligatoria :</span>
-          <TextareaAutosize
-            className="border border-gray-400 rounded-lg p-2"
-            placeholder="Incluya el número de faltas de asistencia máxima permitida. Para el caso de las prácticas académicas defina si la totalidad del curso es de asistencia obligatoria."
-            style={{ width: "100%" }}
-          />
-
-          <span>Bibliografía:</span>
-          <TextareaAutosize
-            className="border border-gray-400 rounded-lg p-2"
-            placeholder="Incluir la bibliografía por Unidades o temas que se requiere para el desarrollo del curso"
-            style={{ width: "100%" }}
-          />
+          <button
+            type="button"
+            onClick={validar}
+            className="ml-5 bg-textColor text-white border-2 rounded-lg w-40 h-12 mt-5"
+          >
+            Guardar
+          </button>
         </div>
-        <button
-          type="submit"
-          className="bg-textColor text-white border-2 rounded-lg w-44 mt-4"
-        >
-          Guardar
-        </button>
       </form>
+      <br />
+      <table className="border-2 rounded-sm mx-auto w-5/6">
+        <tr>
+          <th>Nombres y apellidos</th>
+          <th>Dependencia</th>
+          <th>Formación en pregrado y posgrado</th>
+          <th>Modalidad de participación</th>
+          <th>Unidad N°</th>
+          <th>N° horas</th>
+          <th>Fechas</th>
+        </tr>
+
+        {temporalTeachers.map((teacher) => (
+          <tr>
+            <td>{teacher.fullName}</td>
+            <td>{teacher.dependency}</td>
+            <td>{teacher.studyLevel}</td>
+            <td>{teacher.modality}</td>
+            <td>{teacher.unit}</td>
+            <td>{teacher.hours}</td>
+            <td>{teacher.dates}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   );
 };

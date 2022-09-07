@@ -71,8 +71,6 @@ const ContentSubjects = ({ idSubjectSelected }) => {
       return topic;
     });
 
-    console.log(newTopics);
-
     setTopics(newTopics);
   };
 

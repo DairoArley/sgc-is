@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SpecificInformation from "./SpecificInformation";
 import ContentSubjects from "./ContentSubjects";
+import ActivitiesInformation from "./ActivitiesInformation";
 import TeachersInformation from "./TeachersInformation";
 
 const SubjectInformation = ({idSubjectSelected, readOnly }) => {
@@ -57,19 +58,23 @@ const SubjectInformation = ({idSubjectSelected, readOnly }) => {
           <Typography>Actividades Evaluativas</Typography>
         </AccordionSummary>
         <AccordionDetails>
+          <ActivitiesInformation idSubjectSelected= {idSubjectSelected}/>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography>Profesores</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
           <TeachersInformation idSubjectSelected= {idSubjectSelected}/>
         </AccordionDetails>
       </Accordion>
 
-      <Accordion disabled>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography>Disabled Accordion</Typography>
-        </AccordionSummary>
-      </Accordion>
     </div>
   );
 };

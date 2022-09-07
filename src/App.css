@@ -6,9 +6,3 @@
     display: flex;
 }
 
-.MuiDialogTitle-root{
-    font-weight: 'bold';
-    color: '#09612d';
-    padding-bottom: '10px';
-    font-family: 'Source Sans Pro';
-}
