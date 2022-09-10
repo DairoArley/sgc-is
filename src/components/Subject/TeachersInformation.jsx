@@ -30,6 +30,7 @@ const TeachersInformation = ({ idSubjectSelected }) => {
 
 
   const validar = () => {
+
     setTemporalTeachers(teachers);
     setTeachers(
         {
@@ -220,7 +221,7 @@ const TeachersInformation = ({ idSubjectSelected }) => {
         </tr>
 
         {temporalTeachers.map((teacher) => (
-          <tr>
+          <tr className="text-center">
             <td>{teacher.fullName}</td>
             <td>{teacher.dependency}</td>
             <td>{teacher.studyLevel}</td>

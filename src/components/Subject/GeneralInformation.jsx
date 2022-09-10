@@ -15,13 +15,27 @@ const GeneralInformation = ({ readOnly }) => {
     vigencia: "",
     codigo: "",
     nombre: "",
-    area: ["Básica", "Específica", "Investigación", "Complementaria"],
+    area: [
+      "Básica / Ciencia",
+      "Básica / Ing",
+      "Específica / Prof",
+      "Investigación",
+      "Complementaria",
+    ],
     tipo: ["Teórico", "Práctico", "Teórico-Práctico"],
     creditos: "",
-    modalidad: ["Presencial", "Virtual", "A distancia"],
+    regimenCruso: [
+      "O: obligatoria administrada x Sists.",
+      "Of: obligatoria NO administrada x Sists.",
+      "E: Electiva específica creada y administrada x Sists.",
+      "Ef: Electiva específica creada y NO administrada x Sists.",
+      "E_: Electiva Genérica",
+      "E^: Electiva con incertidumbre de inclusión en el reporte"
+    ],
     prerequisitos: "",
     hrsDocenciaDirecta: "",
   });
+
 
   const { register, handleSubmit, errors } = useForm();
 
@@ -75,7 +89,7 @@ const GeneralInformation = ({ readOnly }) => {
               className="w-full"
             />
           </DialogContent>
-          <DialogContent className="sm:w-1/2 lg:w-1/3">
+          <DialogContent className="lg:w-0 sm:w-1/2">
             <TextField
               sx={{
                 label: { color: "#09612d", fontWeight: "bold" },
@@ -83,13 +97,12 @@ const GeneralInformation = ({ readOnly }) => {
               }}
               autoFocus
               label="Vigencia"
-              //placeholder="Escriba nombres de los programas académicos"
               type="text"
               variant="standard"
-              className="w-full"
+              className="w-1/2"
             />
           </DialogContent>
-          <DialogContent className="sm:w-1/2 lg:w-1/3">
+          <DialogContent className="lg:w-0 sm:w-1/2">
             <TextField
               sx={{
                 label: { color: "#09612d", fontWeight: "bold" },
@@ -100,10 +113,10 @@ const GeneralInformation = ({ readOnly }) => {
               //placeholder="Escriba nombres de los programas académicos"
               type="number"
               variant="standard"
-              className="w-full"
+              className="w-1/2"
             />
           </DialogContent>
-          <DialogContent className="sm:w-1/2 lg:w-1/3">
+          <DialogContent className="lg:w-0 sm:w-1/2">
             <TextField
               sx={{
                 label: { color: "#09612d", fontWeight: "bold" },
@@ -119,9 +132,9 @@ const GeneralInformation = ({ readOnly }) => {
           </DialogContent>
         </div>
 
-        <div className="flex flex-wrap lg:flex--row">
-          <span className="pl-5 pr-2 pb-2 pt-2">
-            Área o componente de formación del currículo :
+        <div className="flex flex-wrap lg:flex--row mx-auto">
+          <span className="pl-5 pb-2 pt-2">
+            Área :
             <select
               name="select"
               className="border-lg rounded-lg ml-2 border-2"
@@ -147,13 +160,13 @@ const GeneralInformation = ({ readOnly }) => {
           </span>
 
           <span className="pl-5 pr-2 pb-2 pt-2">
-            Modalidad :
+            Regimen :
             <select
               name="select"
               className="border-lg rounded-lg ml-2 border-2"
             >
               <option value="value1">Elija un elemento</option>
-              {formData.modalidad.map((item, index) => (
+              {formData.regimenCruso.map((item, index) => (
                 <option key={index}>{item}</option>
               ))}
             </select>
@@ -208,6 +221,7 @@ const GeneralInformation = ({ readOnly }) => {
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue=""
             name="radio-buttons-group"
+            row
           >
             <FormControlLabel
               value="option1"
@@ -215,9 +229,24 @@ const GeneralInformation = ({ readOnly }) => {
               label="Validable"
               className="pl-5"
             />
-            <FormControlLabel value="option2" control={<Radio />} label="Habilitable" className="pl-5"/>
-            <FormControlLabel value="option3" control={<Radio />} label="Clasificable" className="pl-5"/>
-            <FormControlLabel value="option4" control={<Radio />} label="Evaluación de suficiencia" className="pl-5"/>
+            <FormControlLabel
+              value="option2"
+              control={<Radio />}
+              label="Habilitable"
+              className="pl-5"
+            />
+            <FormControlLabel
+              value="option3"
+              control={<Radio />}
+              label="Clasificable"
+              className="pl-5"
+            />
+            <FormControlLabel
+              value="option4"
+              control={<Radio />}
+              label="Evaluación de suficiencia"
+              className="pl-5"
+            />
           </RadioGroup>
           <DialogContent className="sm:w-1/2 lg:w-2/5">
             <TextField

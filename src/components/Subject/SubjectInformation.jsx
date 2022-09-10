@@ -55,20 +55,7 @@ const SubjectInformation = ({idSubjectSelected, readOnly }) => {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography>Actividades Evaluativas</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <ActivitiesInformation idSubjectSelected= {idSubjectSelected}/>
-        </AccordionDetails>
-      </Accordion>
-
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography>Profesores</Typography>
+          <Typography>Coordinador de núcleo - Area academica</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TeachersInformation idSubjectSelected= {idSubjectSelected}/>
