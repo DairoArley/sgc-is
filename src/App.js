@@ -25,7 +25,7 @@ function App() {
               <Malla/>
             </Route>
             <Route exact path="/curriculum/:id">
-              <Curriculum role='Admin'/>
+              <Curriculum role='student'/>
             </Route>
             <Route path="/personas">
               <PersonaList/>
