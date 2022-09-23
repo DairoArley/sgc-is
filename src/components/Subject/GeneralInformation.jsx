@@ -22,6 +22,7 @@ const GeneralInformation = ({ readOnly }) => {
       "Investigación",
       "Complementaria",
     ],
+    areaEspecifica:["Ciencias Exactas y Naturales","computación",],
     tipo: ["Teórico", "Práctico", "Teórico-Práctico"],
     creditos: "",
     regimenCruso: [

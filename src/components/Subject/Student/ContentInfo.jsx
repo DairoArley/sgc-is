@@ -14,14 +14,16 @@ const ContentInfo = () => {
       {Listtopics.map((topic) => {
         return (
           <div key={topic.id}>
-            <div className="w-full items-center justify-center">
-              <li className="">
+            <div className="w-full flex flex-wrap items-center justify-center">
+              <ol className="list-decimal">
+                <li value={topic.id}>
               <input
                   className="w-min border-2 text-textColor border-preColor h-10 px-5 pr-16 mb-2 rounded-lg text-sm focus:outline-none mr-2"
                   value={topic.name}
                   readOnly
                 />
-              </li>
+                </li>
+              </ol>
             </div>
           </div>
         );
