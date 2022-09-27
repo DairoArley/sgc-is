@@ -3,6 +3,6 @@ import './home.css'
 
 export default function Home() {
     return (
-        <div className='home'>Home el nuevo</div>
+        <div className='w-full'>Home el nuevo</div>
     )
 }

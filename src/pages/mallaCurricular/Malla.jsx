@@ -12,7 +12,7 @@ const Malla = () => {
   let levels = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
-    <div className="mx-auto w-100 border-r-amber-200 border-2 font-sans">
+    <div className="w-full border-2 font-sans">
       <div className="h-11 bg-topbarColor">
         <h1 className="text-center text-textColor font-bold">
           Malla Curricular
@@ -30,9 +30,9 @@ const Malla = () => {
       </div>
       <br />
 
-      <div className='p-2 flex flex-row gap-4'>
+      <div className='p-2 flex flex-row md:flex-wrap gap-4 ml-4'>
         {levels.map((level) => (
-          <div key={level} className="flex flex-col items-center">
+          <div key={level} className="flex flex-col md:flex-wrap items-center">
             <h1 className="text-textColor font-bold">Nivel {level}</h1>
             {subject2.map((subject) => {
                 if (subject.nivel === level) {

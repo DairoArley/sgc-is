@@ -35,63 +35,6 @@ export default function Sidebar() {
                         </li>
                     </ul>
                 </div>
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Consultar Tablas</h3>
-                    <ul className="sidebarList">
-                        <li className="sidebarListItem" active>
-                            <Report className='sidebarIcon' />Materia
-                        </li>
-                        <li className="sidebarListItem">
-                            <Timeline className='sidebarIcon' />Estudiante
-                        </li>
-                        <li className="sidebarListItem">
-                            <TrendingUp className='sidebarIcon' />Curriculo
-                        </li>
-                    </ul>
-                </div>
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle"> Crear Tablas</h3>
-                    <ul className="sidebarList">
-                        <li className="sidebarListItem" active>
-                            <Report className='sidebarIcon' />Materia
-                        </li>
-                        <li className="sidebarListItem">
-                            <Timeline className='sidebarIcon' />Estudiante
-                        </li>
-                        <li className="sidebarListItem">
-                            <TrendingUp className='sidebarIcon' />Curriculo
-                        </li>
-                    </ul>
-                </div>
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle"> Modificar Tablas</h3>
-                    <ul className="sidebarList">
-                        <li className="sidebarListItem" active>
-                            <Report className='sidebarIcon' />Materia
-                        </li>
-                        <li className="sidebarListItem">
-                            <Timeline className='sidebarIcon' />Estudiante
-                        </li>
-                        <li className="sidebarListItem">
-                            <TrendingUp className='sidebarIcon' />Curriculo
-                        </li>
-                    </ul>
-                </div>
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle"> Actualizar Tablas</h3>
-                    <ul className="sidebarList">
-                        <li className="sidebarListItem" active>
-                            <BarChart className='sidebarIcon' />Materia
-                        </li>
-                        <li className="sidebarListItem">
-                            <Timeline className='sidebarIcon' />Estudiante
-                        </li>
-                        <li className="sidebarListItem">
-                            <TrendingUp className='sidebarIcon' />Curriculo
-                        </li>
-                    </ul>
-                </div>
-
             </div>
 
         </div>
