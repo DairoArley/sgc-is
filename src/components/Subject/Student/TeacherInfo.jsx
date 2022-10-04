@@ -15,7 +15,7 @@ export const TeacherInfo = () => {
         {
             fullName: "Carlos Mario Sierra Duque",
             dependency: "Ingenieria de Sistemas",
-            studyLevel: "Maestria",
+            studyLevel: "Doctorado",
             modality: "Presencial",
             unit: "4",
             hours: "4",
