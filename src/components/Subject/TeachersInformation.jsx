@@ -52,14 +52,14 @@ const TeachersInformation = ({ idSubjectSelected }) => {
           <DialogContent className="sm:w-1/2 lg:w-1/3">
             <TextField
               sx={{
-                label: { color: "#09612d", fontWeight: "bold" },
+                label: { color: "#09612d", fontWeight: "bold", fontSize: "0.9rem" },
                 input: { fontWeight: "bold" },
               }}
               autoFocus
               value={teachers.fullName}
               label="Nombre completo"
               type="text"
-              variant="standard"
+              variant="outlined"
               className="w-full"
               onChange={(e) => {
                 const teacherChange = teachers.map((teacher) => {
@@ -73,14 +73,14 @@ const TeachersInformation = ({ idSubjectSelected }) => {
           <DialogContent className="sm:w-1/2 lg:w-1/3">
             <TextField
               sx={{
-                label: { color: "#09612d", fontWeight: "bold" },
+                label: { color: "#09612d", fontWeight: "bold" , fontSize: "0.9rem"},
                 input: { fontWeight: "bold" },
               }}
               autoFocus
               value={teachers.dependency}
               label="Dependencia"
               type="text"
-              variant="standard"
+              variant="outlined"
               className="w-full"
               onChange={(e) => {
                 const teacherChange = teachers.map((teacher) => {
@@ -94,14 +94,14 @@ const TeachersInformation = ({ idSubjectSelected }) => {
           <DialogContent className="sm:w-1/2 lg:w-1/3">
             <TextField
               sx={{
-                label: { color: "#09612d", fontWeight: "bold" },
+                label: { color: "#09612d", fontWeight: "bold", fontSize: "0.9rem" },
                 input: { fontWeight: "bold" },
               }}
               autoFocus
               value={teachers.studyLevel}
               label="Formación académica"
               type="text"
-              variant="standard"
+              variant="outlined"
               className="w-full"
               onChange={(e) => {
                 const teacherChange = teachers.map((teacher) => {
@@ -115,14 +115,14 @@ const TeachersInformation = ({ idSubjectSelected }) => {
           <DialogContent className="sm:w-1/2 lg:w-1/3">
             <TextField
               sx={{
-                label: { color: "#09612d", fontWeight: "bold" },
+                label: { color: "#09612d", fontWeight: "bold", fontSize: "0.9rem" },
                 input: { fontWeight: "bold" },
               }}
               autoFocus
               value={teachers.modality}
               label="Modalidad de participación"
               type="text"
-              variant="standard"
+              variant="outlined"
               className="w-full"
               onChange={(e) => {
                 const teacherChange = teachers.map((teacher) => {
@@ -136,7 +136,7 @@ const TeachersInformation = ({ idSubjectSelected }) => {
           <DialogContent className="w-1/6">
             <TextField
               sx={{
-                label: { color: "#09612d", fontWeight: "bold", width: "100%" },
+                label: { color: "#09612d", fontWeight: "bold", width: "100%", fontSize: "0.9rem" },
                 input: { fontWeight: "bold", width: "100%" },
                 div: { width: "50%" },
               }}
@@ -144,7 +144,7 @@ const TeachersInformation = ({ idSubjectSelected }) => {
               value={teachers.unit}
               label="Unidad N°"
               type="number"
-              variant="standard"
+              variant="outlined"
               className="w-full"
               onChange={(e) => {
                 const teacherChange = teachers.map((teacher) => {
@@ -158,7 +158,7 @@ const TeachersInformation = ({ idSubjectSelected }) => {
           <DialogContent className="w-1/6">
             <TextField
               sx={{
-                label: { color: "#09612d", fontWeight: "bold", width: "50%" },
+                label: { color: "#09612d", fontWeight: "bold", width: "50%", fontSize: "0.9rem" },
                 input: { fontWeight: "bold", width: "100%" },
                 div: { width: "50%" },
               }}
@@ -166,7 +166,7 @@ const TeachersInformation = ({ idSubjectSelected }) => {
               value={teachers.hours}
               label="N° Horas"
               type="number"
-              variant="standard"
+              variant="outlined"
               className="w-full"
               onChange={(e) => {
                 const teacherChange = teachers.map((teacher) => {
@@ -180,7 +180,7 @@ const TeachersInformation = ({ idSubjectSelected }) => {
           <DialogContent className="w-1/6 sm:w-1/3 mt-4">
             <TextField
               sx={{
-                label: { color: "#09612d", fontWeight: "bold", width: "100%" },
+                label: { color: "#09612d", fontWeight: "bold", width: "100%", fontSize: "0.9rem" },
                 input: { fontWeight: "bold", width: "100%" },
                 div: { width: "50%" },
               }}

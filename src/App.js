@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <Topbar/> 
-      <div className="container">
+      <div className="w-full flex">
         <Sidebar/>
           <Switch>
             <Route exact path="/">
