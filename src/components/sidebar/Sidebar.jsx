@@ -19,14 +19,19 @@ export default function Sidebar() {
                             <Home className='sidebarIcon' />Inicio
                         </li>
                         </NavLink>
+
                         <NavLink to={'/mallaCurricular'}>
                         <li className="sidebarListItem">
                             <Timeline className='sidebarIcon' />Curriculum
                         </li>
                         </NavLink>
+
+                        <NavLink to={'/person'}>
                         <li className="sidebarListItem">
-                            <BarChart className='sidebarIcon' />Ingresos
+                            <BarChart className='sidebarIcon' />Personas
                         </li>
+                        </NavLink>
+                        
                         <li className="sidebarListItem">
                             <Report className='sidebarIcon' />Reportes
                         </li>

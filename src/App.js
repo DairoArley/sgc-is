@@ -10,6 +10,7 @@ import {
 import PersonaList from "./pages/personaList/PersonaList";
 import Malla from "./pages/mallaCurricular/Malla";
 import Curriculum from "./components/Subject/Curriculum";
+import { Person } from "./pages/personaList/Person";
 
 function App() {
   return (
@@ -24,12 +25,12 @@ function App() {
             <Route exact path="/mallaCurricular">
               <Malla/>
             </Route>
-            <Route exact path="/curriculum/:id">
-              <Curriculum role='student'/>
+            <Route exact path="/person">
+              <Person/>
             </Route>
-            <Route path="/personas">
-              <PersonaList/>
-            </Route>            
+            <Route exact path="/curriculum/:id">
+              <Curriculum role='Admin'/>
+            </Route>           
           </Switch>
       </div>    
     </Router>

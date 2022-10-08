@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import DialogContent from "@mui/material/DialogContent";
 import { FormLabel, RadioGroup } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
-import { StylesProvider } from "@material-ui/core/styles";
-import "./styles.css";
 
-const GeneralInformation = ({ readOnly }) => {
+const GeneralInformation = ({ id }) => {
   const [formData, setFormData] = useState({
     unidadAcademica: "",
     programaAcademico: "",
@@ -24,14 +21,14 @@ const GeneralInformation = ({ readOnly }) => {
       "Investigación",
       "Complementaria",
     ],
-    nucleo:[
+    nucleo: [
       "Ciencias exactas y naturales",
       "Básicas de ingenieria",
       "Ciencia de la computación e informática",
       "Ingenieria de computadores y redes",
       "Ingenieria de software y sistemas de información",
     ],
-    areaPrograma:[
+    areaPrograma: [
       "Matemáticas",
       "Física",
       "lengua materna",
@@ -62,15 +59,61 @@ const GeneralInformation = ({ readOnly }) => {
     hrsDocenciaDirecta: "",
   });
 
-  const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+
+  /*const validate = () => {
+    if(formData.unidadAcademica === ""){
+      alert("El campo Unidad Académica no puede estar vacío");
+      return false;
+    }
+    return true;
+  }*/
+
+  const save = async (event) => {
+    event.preventDefault();
+    /*const response = validate();
+    if(!response){
+      console.log("No se pudo guardar");
+    }*/
+   /* fetch("http://localhost:8089/microcurriculo/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        idMateria: id,
+        campoformacion: formData.unidadAcademica,
+        hti: "string",
+        nroimpartido: "string",
+        porcdiligenciados: "string",
+        resultadoaprendizaje: "string",
+        tipoContenido: "string",
+        cproposito: "string",
+        cjustificacion: "string",
+        cobjetivoGeneral: "string",
+        csaber: "string",
+        chacer: "string",
+        cser: "string",
+        elaboro: 0,
+        ccontenido: "string",
+        cmetodologia: "string",
+        cevaluacion: "string",
+        cunidadesDetallas: "string",
+      }),
+    }).then(() => {
+      console.log("Microcurriculum done");
+    });*/
+    
+  };
+
+  const handleInputChange = (event) => {
+    const {name, value} = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   return (
     <div className="ml-2 mx-auto md:w-full font-sans rounded-lg text-textColor text-lg font-bold">
-      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-wrap lg:flex-row w-full">
           <DialogContent className="sm:w-1/2 lg:w-1/3">
             <TextField
@@ -82,10 +125,12 @@ const GeneralInformation = ({ readOnly }) => {
                 },
                 input: { fontWeight: "bold" },
               }}
+              id="unidad"
               autoFocus
               label="Unidad Académica"
               placeholder="Escriba nombre de la Unidad Académica."
               type="text"
+              name="unidadAcademica"
               variant="outlined"
               className="w-full"
             />
@@ -100,11 +145,14 @@ const GeneralInformation = ({ readOnly }) => {
                 },
                 input: { fontWeight: "bold" },
               }}
+              id = "programa"
               autoFocus
               label="Programa académico al que pertenece"
               placeholder="Escriba nombre del programa académico"
               type="text"
               variant="outlined"
+              onChange={handleInputChange}
+              name="programaAcademico"
               className="w-full"
             />
           </DialogContent>
@@ -123,12 +171,15 @@ const GeneralInformation = ({ readOnly }) => {
               placeholder="Escriba nombres de los programas académicos"
               type="text"
               variant="outlined"
+              onChange={handleInputChange}
+              name="programAcademicoOfertado"
               className="w-full"
             />
           </DialogContent>
           <div className="mt-8 mx-auto flex flex-wrap lg:flex-row w-3/4">
             <DialogContent className="w-1/6">
-              <TextField id='vigenciaInput' 
+              <TextField
+                id="vigenciaInput"
                 sx={{
                   label: {
                     color: "#09612d",
@@ -141,44 +192,49 @@ const GeneralInformation = ({ readOnly }) => {
                 label="Vigencia"
                 type="text"
                 variant="outlined"
+                onChange={handleInputChange}
+                name="vigencia"
                 className="w-3/5"
               />
             </DialogContent>
-          <DialogContent className="w-1/6">
-            <TextField
-              sx={{
-                label: {
-                  color: "#09612d",
-                  fontWeight: "bold",
-                  fontSize: "0.9rem",
-                },
-                input: { fontWeight: "bold" },
-              }}
-              autoFocus
-              label="Código curso"
-              //placeholder="Escriba nombres de los programas académicos"
-              type="number"
-              variant="outlined"
-              className="w-3/5"
-            />
-          </DialogContent>
-          <DialogContent className="MuiDialogContent-root vigencia">
-            <TextField
-              sx={{
-                label: {
-                  color: "#09612d",
-                  fontWeight: "bold",
-                  fontSize: "0.9rem",
-                },
-                input: { fontWeight: "bold" },
-              }}
-              autoFocus
-              label="Nombre del curso"
-              //placeholder="Escriba nombres de los programas académicos"
-              type="text"
-              variant="outlined"
-            />
-          </DialogContent>
+            <DialogContent className="w-1/6">
+              <TextField
+                sx={{
+                  label: {
+                    color: "#09612d",
+                    fontWeight: "bold",
+                    fontSize: "0.9rem",
+                  },
+                  input: { fontWeight: "bold" },
+                }}
+                autoFocus
+                label="Código curso"
+                type="number"
+                variant="outlined"
+                onChange={handleInputChange}
+                name="codigo"
+                className="w-3/5"
+              />
+            </DialogContent>
+            <DialogContent className="MuiDialogContent-root vigencia">
+              <TextField
+                sx={{
+                  label: {
+                    color: "#09612d",
+                    fontWeight: "bold",
+                    fontSize: "0.9rem",
+                  },
+                  input: { fontWeight: "bold" },
+                }}
+                autoFocus
+                label="Nombre del curso"
+                //placeholder="Escriba nombres de los programas académicos"
+                type="text"
+                onChange={handleInputChange}
+                name="nombre"
+                variant="outlined"
+              />
+            </DialogContent>
           </div>
         </div>
 
@@ -253,12 +309,18 @@ const GeneralInformation = ({ readOnly }) => {
           <DialogContent className="w-1/6">
             <TextField
               sx={{
-                label: { color: "#09612d", fontWeight: "bold" ,fontSize: "0.9rem"},
+                label: {
+                  color: "#09612d",
+                  fontWeight: "bold",
+                  fontSize: "0.9rem",
+                },
                 input: { fontWeight: "bold" },
               }}
               autoFocus
               label="Créditos"
               type="number"
+              onChange={handleInputChange}
+              name="creditos"
               variant="outlined"
               className="w-3/5"
             />
@@ -266,12 +328,18 @@ const GeneralInformation = ({ readOnly }) => {
           <DialogContent className="w-1/5">
             <TextField
               sx={{
-                label: { color: "#09612d", fontWeight: "bold", fontSize: "0.9rem" },
+                label: {
+                  color: "#09612d",
+                  fontWeight: "bold",
+                  fontSize: "0.9rem",
+                },
                 input: { fontWeight: "bold" },
               }}
               autoFocus
               label="Horas docencia directa"
               type="number"
+              onChange={handleInputChange}
+              name="hrsDocenciaDirecta"
               variant="outlined"
               className="w-3/5"
             />
@@ -279,7 +347,11 @@ const GeneralInformation = ({ readOnly }) => {
           <DialogContent className="w-1/3">
             <TextField
               sx={{
-                label: { color: "#09612d", fontWeight: "bold", fontSize: "0.9rem" },
+                label: {
+                  color: "#09612d",
+                  fontWeight: "bold",
+                  fontSize: "0.9rem",
+                },
                 input: { fontWeight: "bold" },
               }}
               autoFocus
@@ -354,7 +426,6 @@ const GeneralInformation = ({ readOnly }) => {
             />
           </DialogContent>
         </div>
-      </form>
     </div>
   );
 };
