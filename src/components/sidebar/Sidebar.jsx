@@ -1,6 +1,10 @@
 import React from 'react'
 import './sidebar.css'
-import { Home, Timeline, TrendingUp, BarChart, DynamicFeed, Report } from "@material-ui/icons";
+import HomeIcon from '@mui/icons-material/Home';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+
 import {
     NavLink
   } from "react-router-dom";
@@ -16,27 +20,24 @@ export default function Sidebar() {
                     <ul className="sidebarList">
                         <NavLink to={'/'}>
                         <li className="sidebarListItem" active>
-                            <Home className='sidebarIcon' />Inicio
+                            <HomeIcon className='sidebarIcon' />Inicio
                         </li>
                         </NavLink>
 
                         <NavLink to={'/mallaCurricular'}>
                         <li className="sidebarListItem">
-                            <Timeline className='sidebarIcon' />Curriculum
+                            <TimelineIcon className='sidebarIcon' />Curriculum
                         </li>
                         </NavLink>
 
                         <NavLink to={'/person'}>
                         <li className="sidebarListItem">
-                            <BarChart className='sidebarIcon' />Personas
+                            <BarChartIcon className='sidebarIcon' />Personas
                         </li>
                         </NavLink>
                         
-                        <li className="sidebarListItem">
-                            <Report className='sidebarIcon' />Reportes
-                        </li>
                         <li className="sidebarListItem" >
-                            <DynamicFeed className='sidebarIcon' />Personas 
+                            <DynamicFeedIcon className='sidebarIcon' />Personas 
                         </li>
                     </ul>
                 </div>

@@ -2,7 +2,6 @@ import "./personaList.css";
 import TextField from "@mui/material/TextField";
 import DialogContent from "@mui/material/DialogContent";
 import { useState } from "react";
-import Router from "next/router";
 
 
 export default function PersonList() {
@@ -29,7 +28,7 @@ export default function PersonList() {
         apellido: data.apellido,
       }),
     }).then(() => {
-      Router.push("/person");
+      //withRouter.push("/person");
     });
   };
 
