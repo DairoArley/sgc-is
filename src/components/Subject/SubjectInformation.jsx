@@ -12,27 +12,35 @@ import { useState } from "react";
 import ErrorData from "../Modal/ErrorData";
 
 const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
-  const [respuesta, setRespuesta] = useState("");
+  
+  const [respuesta, setRespuesta] = useState('');
+  
 
   // {respuesta === "true" && <button>Guardar</button>}
   // {respuesta !== "" && <ErrorData msg={respuesta} />}
-
+ 
   const mostrar = async (event) => {
+    /*let temp = respuesta
     event.preventDefault();
-    if (document.getElementById("unidad").value === "") {
-      setRespuesta({ ...respuesta, respuesta: respuesta+"Unidad" });
+    let v = document.getElementsById("unidad").value
+    if (v.length == 0) {
+      let nuevo = temp.concat(' ', "Unidad académica");
+      setRespuesta(nuevo);
+      console.log(respuesta);
     }
-    if (document.getElementById("programa").value === "") {
-      setRespuesta({ ...respuesta, respuesta: respuesta+"Programa Academico" });
-    }
-    console.log(respuesta);
+    if (document.getElementById("programa").value == "") {
+      let nuevo2 = temp.concat(' ', "Programa académico");
+      setRespuesta(nuevo2);	
+      console.log(nuevo2)
+    }*/
+    
   };
 
   return (
     <>
       <div>
         <form onSubmit={mostrar}>
-          <Accordion>
+          <Accordion expanded={true}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
@@ -44,7 +52,7 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
               <GeneralInformation id={idSubjectSelected} />
             </AccordionDetails>
           </Accordion>
-          <Accordion>
+          <Accordion expanded={true}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
@@ -56,7 +64,7 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
               <SpecificInformation />
             </AccordionDetails>
           </Accordion>
-          <Accordion>
+          <Accordion expanded={true}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
@@ -69,7 +77,7 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
             </AccordionDetails>
           </Accordion>
 
-          <Accordion>
+          <Accordion expanded={true}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"

@@ -28,6 +28,9 @@ function App() {
             <Route exact path="/person">
               <Person/>
             </Route>
+            <Route exact path="/personCreate">
+              <PersonaList/>
+            </Route>
             <Route exact path="/curriculum/:id">
               <Curriculum role='Admin'/>
             </Route>           
