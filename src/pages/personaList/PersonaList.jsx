@@ -2,9 +2,13 @@ import "./personaList.css";
 import TextField from "@mui/material/TextField";
 import DialogContent from "@mui/material/DialogContent";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export default function PersonList() {
+
+  let navigate = useNavigate();
+
   const [data, setData] = useState({
     id: "",
     nombre: "",
@@ -28,8 +32,9 @@ export default function PersonList() {
         apellido: data.apellido,
       }),
     }).then(() => {
-      //withRouter.push("/person");
+      return navigate("/person");
     });
+    
   };
 
   const handleInputChange = (event) => {
