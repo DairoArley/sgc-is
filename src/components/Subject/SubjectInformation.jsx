@@ -7,18 +7,21 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SpecificInformation from "./SpecificInformation";
 import ContentSubjects from "./ContentSubjects";
 import TeachersInformation from "./TeachersInformation";
+import Button from "@mui/material/Button";
+import { Formik } from "formik";
+import General from "./General";
 
-import { useState } from "react";
-import ErrorData from "../Modal/ErrorData";
+
+import { useState, useEffect } from "react";
+import { esquemaValidacion, valoresIniciales } from "./utils";
+import Especific from "./Especific";
 
 const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
-  
-  const [respuesta, setRespuesta] = useState('');
-  
+  const [respuesta, setRespuesta] = useState(valoresIniciales);
 
   // {respuesta === "true" && <button>Guardar</button>}
   // {respuesta !== "" && <ErrorData msg={respuesta} />}
- 
+
   const mostrar = async (event) => {
     /*let temp = respuesta
     event.preventDefault();
@@ -33,26 +36,72 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
       setRespuesta(nuevo2);	
       console.log(nuevo2)
     }*/
-    
+  };
+
+
+  useEffect(() => {
+    const respuestaApi = [];
+    if(respuestaApi.length === 0){
+      setRespuesta(valoresIniciales);
+    }else{
+      setRespuesta(respuestaApi);
+    }
+  }, [])
+  
+
+  const onSubmit = async (values, setSubmitting) => {
+    setSubmitting(false);
+    console.log(values);
   };
 
   return (
     <>
       <div>
-        <form onSubmit={mostrar}>
-          <Accordion expanded={true}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Información General</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <GeneralInformation id={idSubjectSelected} />
-            </AccordionDetails>
-          </Accordion>
-          <Accordion expanded={true}>
+        <Formik
+          initialValues={respuesta}
+          onSubmit={(values, { setSubmitting }) => {
+            setSubmitting(true);
+            onSubmit(values, setSubmitting);
+          }}
+          validationSchema={esquemaValidacion}
+        >
+          {({ values, isSubmitting, handleSubmit, handleReset }) => {
+            return (
+              <form onSubmit={handleSubmit}>
+                <Accordion expanded={true}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography>Información General</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <General id={idSubjectSelected} values={values} readOnly={readOnly} />
+                  </AccordionDetails>
+                </Accordion>
+
+                <Accordion expanded={true}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography>Información Especifica</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Especific values={values} />
+                  </AccordionDetails>
+                </Accordion>
+                <Button type="submit" disabled={isSubmitting}>
+                  Guardar
+                </Button>
+              </form>
+            );
+          }}
+        </Formik>
+
+        {/* <Accordion expanded={true}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
@@ -88,12 +137,8 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
             <AccordionDetails>
               <TeachersInformation idSubjectSelected={idSubjectSelected} />
             </AccordionDetails>
-          </Accordion>
-
-          <button type="submit">Guardar</button>
-        </form>
+          </Accordion> */}
       </div>
- 
     </>
   );
 };
