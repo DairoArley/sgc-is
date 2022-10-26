@@ -50,8 +50,8 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
   
 
   const onSubmit = async (values, setSubmitting) => {
-    setSubmitting(false);
     console.log(values);
+    setSubmitting(false);
   };
 
   return (
@@ -81,6 +81,7 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
                   </AccordionDetails>
                 </Accordion>
 
+
                 <Accordion expanded={true}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -93,6 +94,8 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
                     <Especific values={values} />
                   </AccordionDetails>
                 </Accordion>
+
+        
                 <Button type="submit" disabled={isSubmitting}>
                   Guardar
                 </Button>
