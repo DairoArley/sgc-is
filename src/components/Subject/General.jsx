@@ -10,7 +10,17 @@ import {
   opcionesTipoTipo,
 } from "./utils";
 
-const General = ({ id, values, readOnly }) => {
+const General = ({ dataSubject, values, readOnly }) => {
+
+  const codigo = dataSubject[0];
+  const creditos = dataSubject[1];
+  const nombre = dataSubject[2];
+  const newValues = values;
+  newValues.codigo = codigo;
+  newValues.creditos = creditos;
+  newValues.nombre = nombre;
+  values = newValues;
+
   return (
     <div>
       <div className="flex flex-col lg:flex-row">
@@ -73,7 +83,7 @@ const General = ({ id, values, readOnly }) => {
         <Input
           name="codigo"
           type="number"
-          disabled={readOnly}
+          disabled={true}
           placeholder="Ingrese el código del curso"
           value={values}
           label="Código del curso"
@@ -81,7 +91,7 @@ const General = ({ id, values, readOnly }) => {
         <Input
           name="nombre"
           type="text"
-          disabled={readOnly}
+          disabled={true}
           placeholder="Ingrese el nombre del curso"
           value={values}
           label="Nombre del curso"
@@ -89,7 +99,7 @@ const General = ({ id, values, readOnly }) => {
         <Input
           name="creditos"
           type="number"
-          disabled={readOnly}
+          disabled={true}
           placeholder="Ingrese el número de créditos del curso"
           value={values}
           label="Créditos del curso"

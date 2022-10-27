@@ -44,7 +44,7 @@ export function Subject({ name, cod, credits, onClick, selectedSubject }) {
       <div id={cod} className={style} onClick={onClick}>
         <div className='flex h-16 flex-row items-center'>
             <p className='text-xs font-bold mx-auto'>{name}</p> 
-            <NavLink to={'/Curriculum/'+cod}>
+            <NavLink to={'/Curriculum/'+cod+"-"+credits+"-"+name}>
             <IconButton aria-label="Example">
                     <FontAwesomeIcon icon={faEllipsisV} />
                 </IconButton>

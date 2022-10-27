@@ -23,6 +23,14 @@ export const valoresIniciales = {
   objetivoEspecifico: "",
   metodologia: "",
   resultadosAprendizaje: "",
+  contenido: ['discretas 1', 'discretas 2'],
+  nombreProfesor: "",
+  dependencia: "",
+  formacionAcademica: "",
+  modalidadParticipacion: "",
+  unidad: "",
+  nrHoras: "",
+  fechaModificacion: "",
 };
 
 
@@ -94,7 +102,7 @@ export const esquemaValidacion = Yup.object().shape({
   nombre: Yup.string().required('Campo requerido'),
   caracteristica: Yup.array().required("Campo requerido").test('caracteristica', 'Debe seleccionar al menos una opción', val => val.length > 0),
   tipo: Yup.string().required('Campo requerido'),
-  creditos: Yup.string().required('Campo requerido').test('creditos', 'Debe ser un número entero', val => Number.isInteger(Number(val))).test('creditos', 'Debe ser un número entre 1 y 5', val => Number(val) > 0 & Number(val) <= 5),
+  creditos: Yup.string().required('Campo requerido').test('creditos', 'Debe ser un número entero', val => Number.isInteger(Number(val))).test('creditos', 'Debe ser un número entre 0 y 5', val => Number(val) >= 0 & Number(val) <= 5),
   regimenCurso: Yup.string().required('Campo requerido'),
   hrsDocenciaDirecta: Yup.string().required('Campo requerido').test('hrsDocenciaDirecta', 'El valor debe ser mayor a 0', value => value > 0),
   hrsTrabajoIndependiente: Yup.string().required('Campo requerido').test('hrsTrabajoIndependiente', 'El valor debe ser mayor a 0', value => value > 0),
@@ -106,4 +114,14 @@ export const esquemaValidacion = Yup.object().shape({
   objetivoEspecifico: Yup.string().required('Campo requerido'),
   metodologia: Yup.string().required('Campo requerido'),
   resultadosAprendizaje: Yup.string().required('Campo requerido'),
+  //contenido
+  contenido: Yup.array().required('Campo requerido'),
+  //Profesor
+  nombreProfesor: Yup.string().required('Campo requerido'),
+  dependencia: Yup.string().required('Campo requerido'),
+  formacionAcademica: Yup.string().required('Campo requerido'),
+  modalidadParticipacion: Yup.string().required('Campo requerido'),
+  unidad: Yup.string().required('Campo requerido'),
+  nrHoras: Yup.string().required('Campo requerido'),
+  fechaModificacion: Yup.string().required('Campo requerido'),
 });

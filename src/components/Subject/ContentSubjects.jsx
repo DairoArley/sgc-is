@@ -1,8 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Input from "../inputs/Input";
 
-const ContentSubjects = ({ idSubjectSelected }) => {
+const ContentSubjects = ({ id, values, readOnly }) => {
   const [listUnits, setListUnits] = React.useState([]);
 
   const [topics, setTopics] = React.useState([]);
@@ -114,7 +115,6 @@ const ContentSubjects = ({ idSubjectSelected }) => {
     setTopics(topicChange);
   };
 
-
   const validate = () => {
     let valid = true;
     topics.map((topic) => {
@@ -122,46 +122,54 @@ const ContentSubjects = ({ idSubjectSelected }) => {
         valid = false;
       }
     });
-    console.log(valid)
+    console.log(valid);
     return valid;
   };
 
   return (
     <div className="ml-2 mx-auto w-full font-sans rounded-lg text-textColor text-lg font-bold text-center">
       <form onSubmit={validate}>
-      {topics.map((topic) => {
-        return (
-          <div key={topic.id}>
-            <div className="w-full flex flex-row items-center justify-center">
-              <li>
-                <input
+        {topics.map((topic) => {
+          return (
+            <div key={topic.id}>
+              <div className="w-full flex flex-col items-center justify-center">
+                
+                  {/* <input
                   className="w-3/4 border-2 text-textColor border-preColor h-10 px-5 pr-16 mb-2 rounded-lg text-sm focus:outline-none mr-2"
                   type="text"
                   name="topic"
                   value={topic.name}
                   onChange={(e) => handleChange(e, topic.id)}
-                />
-                <DeleteIcon onClick={() => deleteOneUnit(topic.id)} />
-              </li>
+                /> */}
+                  <Input
+                    name="contenido"
+                    type="text"
+                    disabled={readOnly}
+                    placeholder="Ingrese el contenido"
+                    value={values}
+                    label="contenido"
+                  />
+                  <DeleteIcon onClick={() => deleteOneUnit(topic.id)} />
+              
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
 
-      <button
-        type="button"
-        onClick={() => addElement()}
-        className="bg-textColor text-white border-2 rounded-lg w-40 ml-6"
-      >
-        Agregar unidad
-      </button>
+        <button
+          type="button"
+          onClick={() => addElement()}
+          className="bg-textColor text-white border-2 rounded-lg w-40 ml-6"
+        >
+          Agregar unidad
+        </button>
 
-      <button
-        type="submit"
-        className="bg-textColor text-white border-2 rounded-lg w-44 mt-4"
-      >
-        Guardar
-      </button>
+        <button
+          type="submit"
+          className="bg-textColor text-white border-2 rounded-lg w-44 mt-4"
+        >
+          Guardar
+        </button>
       </form>
     </div>
   );
