@@ -31,6 +31,7 @@ export const valoresIniciales = {
   unidad: "",
   nrHoras: "",
   fechaModificacion: "",
+  versionMalla:"",
 };
 
 
@@ -89,6 +90,15 @@ export const valoresIniciales = {
     { value: "Ingenieria de software y sistemas de información", label: "Ingenieria de software y sistemas de información" },
   ]
 
+
+  export const opcionesVersionMalla = [
+    {value: "1", label: "Versión 1"},
+    {value: "2", label: "Versión 2"},
+    {value: "3", label: "Versión 3"},
+    {value: "4", label: "Versión 4"},
+    {value: "5", label: "Versión 5"},
+  ]
+
 export const esquemaValidacion = Yup.object().shape({
   //General
   unidadAcademica: Yup.string().required("Campo requerido"),
@@ -124,4 +134,5 @@ export const esquemaValidacion = Yup.object().shape({
   unidad: Yup.string().required('Campo requerido'),
   nrHoras: Yup.string().required('Campo requerido'),
   fechaModificacion: Yup.string().required('Campo requerido'),
+  versionMalla: Yup.string().required('Campo requerido')
 });
