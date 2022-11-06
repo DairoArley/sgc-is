@@ -16,6 +16,7 @@ import { RingLoader } from "react-spinners";
 const Malla = () => {
   const [subjectSelected, setSubjectSelected] = useState();
   const [versionSelected, setVersionSelected] = useState(false);
+  const [version, setVersion] = useState();
 
   const selectSubject = (subject) => {
     console.log(subject);
@@ -69,6 +70,7 @@ const Malla = () => {
     setSubmitting(false);
     setSpinner(true);
     //traerData(values.versionMalla);
+    setVersion(values.versionMalla)
     setTimeout(() => {
       setSpinner(false);
       setVersionSelected(true);
@@ -83,7 +85,7 @@ const Malla = () => {
     <div className="w-screen border-2 font-sans">
       {spinner ? (
         <div className="flex items-center justify-center h-full">
-          <RingLoader color={"#c4e86b"} loading={spinner} size={250} />
+          <RingLoader color={"#09612d"} loading={spinner} size={250} />
         </div>
       ) : (
         <div >
@@ -102,8 +104,7 @@ const Malla = () => {
               <p>
                 Version actual:{" "}
                 {
-                  //subject2[0].version
-                  5
+                  version
                 }
               </p>
             </div>
