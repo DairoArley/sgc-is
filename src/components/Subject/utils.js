@@ -31,8 +31,11 @@ export const valoresIniciales = {
   unidad: "",
   nrHoras: "",
   fechaModificacion: "",
-  versionMalla:"",
 };
+
+export const valoresIniciales2={
+  versionMalla:""
+}
 
 
  export const opcionesTipoArea = [
@@ -134,5 +137,10 @@ export const esquemaValidacion = Yup.object().shape({
   unidad: Yup.string().required('Campo requerido'),
   nrHoras: Yup.string().required('Campo requerido'),
   fechaModificacion: Yup.string().required('Campo requerido'),
-  versionMalla: Yup.string().required('Campo requerido')
+
 });
+
+
+export const esquemaValidacion2 = Yup.object().shape({
+  versionMalla: Yup.string().required('Campo requerido'),
+})
