@@ -35,10 +35,6 @@ export default function Sidebar() {
                             <BarChartIcon className='sidebarIcon' />Personas
                         </li>
                         </NavLink>
-                        
-                        <li className="sidebarListItem" >
-                            <DynamicFeedIcon className='sidebarIcon' />Personas 
-                        </li>
                     </ul>
                 </div>
             </div>

@@ -12,7 +12,7 @@ export function Subject({ name, cod, credits, onClick, selectedSubject }) {
 
   const stylePre ='w-44 mx-auto border-2 font-sans rounded-lg text-black text-center m-2 bg-preColor';
   const styleCo = 'w-44 mx-auto border-2 font-sans rounded-lg text-white text-center m-2 bg-corColor';
-  const styleNormal = 'w-44 mx-auto bg-cardSubjectColor border-b font-sans rounded-lg text-textColor text-center m-2 drop-shadow-xl';
+  const styleNormal = 'w-44 mx-auto bg-cardSubjectColor border-b border font-sans rounded-lg text-textColor text-center m-2 drop-shadow-xl';
   const styleSelectSubject = 'w-44 mx-auto border-2 border-preColor font-sans rounded-lg text-textColor text-center m-2'
 
   const [style, setStyle] = useState(styleNormal);

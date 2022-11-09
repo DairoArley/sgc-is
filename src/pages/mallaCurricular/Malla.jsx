@@ -89,17 +89,17 @@ const Malla = () => {
         </div>
       ) : (
         <div >
-          <div className="h-11 bg-topbarColor">
+          <div className="h-11 bg-preColor">
             <h1 className="text-center text-textColor font-bold">
               Malla Curricular
             </h1>
           </div>
           <div>
-            <h1 className="text-textColor font-bold text-center text-xl">
+            <h1 className="text-textColor font-bold text-center text-xl mt-2">
               504 - INGENIERIA DE SISTEMAS
             </h1>
             <br />
-            <div className="mx-auto text-center w-max bg-textColor text-white">
+            <div className="mx-auto text-center w-1/3 bg-textColor text-white border  rounded-xl mb-2">
               Créditos totales para grado:168
               <p>
                 Version actual:{" "}
@@ -108,7 +108,7 @@ const Malla = () => {
                 }
               </p>
             </div>
-            <div className="w-full">
+            <div className="w-1/2 mx-auto mt-10">
               <Formik
                 initialValues={respuesta}
                 onSubmit={(values, { setSubmitting }) => {
