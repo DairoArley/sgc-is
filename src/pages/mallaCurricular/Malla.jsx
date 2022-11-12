@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import SelectInput from "../../components/inputs/SelectInput";
 import { Subject } from "../../components/Subject/Subject";
 import { opcionesVersionMalla } from "../../components/Subject/utils";
-import { subject2 } from "../../utils/dataPensum";
 import { Formik } from "formik";
 import Button from "@mui/material/Button";
 import {
@@ -19,48 +18,44 @@ const Malla = () => {
   const [version, setVersion] = useState();
 
   const selectSubject = (subject) => {
-    console.log(subject);
     setSubjectSelected(subject);
   };
 
   const [spinner, setSpinner] = useState(false);
-  // const [subject2, setSubject2] = useState([]);
+  const [subject2, setSubject2] = useState([]);
 
-  // const facultad = "25";
-  // const programa = "504";
+  const facultad = "25";
+  const programa = "504";
 
   let subject3 = [];
 
-  // const traerData = async (version) => {
-  //   fetch("http://localhost:8089/microcurriculo/listar/requisitosmateria", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       facultad: facultad,
-  //       version: version,
-  //       programa: programa,
-  //     }),
-  //   }).then((response) => response.json())
-  //     .then((data) => {
-  //       subject3 = data.map((item) => {
-  //         return {
-  //           materia: item.materia,
-  //           nombreMateria: item.nombreMateria,
-  //           creditos: 5,
-  //           nivel: item.nivel,
-  //           requisitos: item.requisitos,
-  //         };
-  //       });
-  //       setSubject2(subject3);
-  //       setSpinner(false);
-  //       setVersionSelected(true);
-  //     });
-  //     console.log(subject2[1]);
-  // };
-
-  // useEffect(() => {
-  //   traerData();
-  // }, []);
+  const traerData = async (version) => {
+    console.log(version)
+    fetch("http://192.168.30.80:8080/microcurriculo/listar/requisitosmateria", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        facultad: facultad,
+        version: version,
+        programa: programa,
+      }),
+    }).then((response) => response.json())
+      .then((data) => {
+        subject3 = data.map((item) => {
+          return {
+            materia: item.materia,
+            nombreMateria: item.nombreMateria,
+            creditos: item.creditos,
+            nivel: item.nivel,
+            requisitos: item.requisitos,
+          };
+        });
+        setSubject2(subject3);
+        setSpinner(false);
+        setVersionSelected(true);
+      });
+      
+  };
 
   let levels = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -69,15 +64,13 @@ const Malla = () => {
   const onSubmit = async (values, setSubmitting) => {
     setSubmitting(false);
     setSpinner(true);
-    //traerData(values.versionMalla);
+    setSubjectSelected();
+    traerData(values.versionMalla);
     setVersion(values.versionMalla)
-    setTimeout(() => {
-      setSpinner(false);
-      setVersionSelected(true);
-    }, 5000);
   };
 
   useEffect(() => {
+    
     setRespuesta(valoresIniciales2);
   }, []);
 
