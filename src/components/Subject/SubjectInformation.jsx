@@ -16,10 +16,12 @@ import { esquemaValidacion, valoresIniciales } from "./utils";
 import Especific from "./Especific";
 import Content from "./Content";
 import Teacher from "./Teacher";
+import { get } from "react-hook-form";
 
 const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
   const [respuesta, setRespuesta] = useState(valoresIniciales);
 
+  const [dataBack, setDataBack] = useState([]);
   // {respuesta === "true" && <button>Guardar</button>}
   // {respuesta !== "" && <ErrorData msg={respuesta} />}
 
@@ -39,10 +41,10 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
     }*/
   };
 
-
   const data = idSubjectSelected.split("-");
 
   useEffect(() => {
+    //fetch
     const respuestaApi = [];
     if (respuestaApi.length === 0) {
       setRespuesta(valoresIniciales);
@@ -51,9 +53,65 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
     }
   }, [idSubjectSelected]);
 
+  let contenidoResumido;
+  let caracteristicas;
+
+  const guardarDatos = async (info, setSubmitting) => {
+    //setSubmitting(false);
+    let dataToSave = Object.values(info);
+    dataToSave[13] = dataToSave[13].join("-");
+    dataToSave[22] = dataToSave[22].join("-");
+    console.log(dataToSave);
+    //et()
+    await fetch("http://192.168.30.80:8080/microcurriculo/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        codMicrocurriculo: dataToSave[7] + data[3],
+        idMateria: dataToSave[7],
+        resultadoaprendizaje: dataToSave[21],
+        tipoContenido: dataToSave[11],
+        cproposito: dataToSave[17],
+        cjustificacion: dataToSave[17],
+        cobjetivoGeneral: dataToSave[18],
+        elaboro: 0,
+        unidadAcademica: dataToSave[0],
+        programaAcademico: dataToSave[2],
+        vigencia: dataToSave[6],
+        codigoCurso: dataToSave[7],
+        nombreCurso: dataToSave[8],
+        areaUdea: dataToSave[3],
+        nucleoPrograma: dataToSave[4],
+        areaPrograma: dataToSave[5],
+        regimen: dataToSave[12],
+        creditos: dataToSave[9],
+        horasDocenciaDirecta: dataToSave[10],
+        horasTrabajoIndependiente: dataToSave[14],
+        caracteristicaCurso: dataToSave[13],
+        correo: dataToSave[16],
+        objetivoEspecifico: dataToSave[19],
+        dependencia: dataToSave[24],
+        formacionAcademica: dataToSave[25],
+        modalidad: dataToSave[26],
+        unidad: dataToSave[27],
+        numeroHoras: dataToSave[28],
+        fecha: dataToSave[29],
+        programaOferta: dataToSave[2],
+        profesor: dataToSave[23],
+        ccontenido: dataToSave[22],
+        cmetodologia: dataToSave[20],
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   const onSubmit = async (values, setSubmitting) => {
-    console.log(values);
-    setSubmitting(false);
+    //setSubmitting(false);
+    let data = values;
+    guardarDatos(data, setSubmitting);
   };
 
   return (
@@ -62,7 +120,7 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
         <Formik
           initialValues={respuesta}
           onSubmit={(values, { setSubmitting }) => {
-            setSubmitting(true);
+            setSubmitting(false);
             onSubmit(values, setSubmitting);
           }}
           validationSchema={esquemaValidacion}

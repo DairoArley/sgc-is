@@ -16,7 +16,8 @@ const Content = ({ valuesB, readOnly }) => {
           const { contenido } = values;
           return (
             <div>
-              {contenido.map((contenido, index) => (
+              {
+              contenido.map((contenido, index) => (
                 <div key={index}>
                     <div className="lg:w-1/2 flex flex-col lg:flex-row mx-auto">
                     <Input

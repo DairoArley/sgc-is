@@ -12,6 +12,8 @@ import { data } from "autoprefixer";
 import ClipLoader from "react-spinners/ClipLoader";
 import { RingLoader } from "react-spinners";
 
+import { subject2 } from "../../utils/dataPensum";
+
 const Malla = () => {
   const [subjectSelected, setSubjectSelected] = useState();
   const [versionSelected, setVersionSelected] = useState(false);
@@ -22,7 +24,7 @@ const Malla = () => {
   };
 
   const [spinner, setSpinner] = useState(false);
-  const [subject2, setSubject2] = useState([]);
+ // const [subject2, setSubject2] = useState([]);
 
   const facultad = "25";
   const programa = "504";
@@ -50,7 +52,7 @@ const Malla = () => {
             requisitos: item.requisitos,
           };
         });
-        setSubject2(subject3);
+        //setSubject2(subject3);
         setSpinner(false);
         setVersionSelected(true);
       });
@@ -65,8 +67,12 @@ const Malla = () => {
     setSubmitting(false);
     setSpinner(true);
     setSubjectSelected();
-    traerData(values.versionMalla);
+    //traerData(values.versionMalla);
     setVersion(values.versionMalla)
+    setTimeout(() => {
+      setSpinner(false);
+      setVersionSelected(true);
+    }, 5000);
   };
 
   useEffect(() => {
@@ -150,6 +156,7 @@ const Malla = () => {
                             name={subject.nombreMateria}
                             cod={subject.materia}
                             credits={subject.creditos}
+                            version={version}
                             onClick={() => selectSubject(subject)}
                             selectedSubject={subjectSelected}
                           />

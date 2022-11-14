@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export function Subject({ name, cod, credits, onClick, selectedSubject }) {
+export function Subject({ name, cod, credits, onClick, selectedSubject, version }) {
   const stylePre =
     "w-44 mx-auto border-2 font-sans rounded-lg text-black text-center m-2 bg-preColor";
   const styleCo =
@@ -47,7 +47,7 @@ export function Subject({ name, cod, credits, onClick, selectedSubject }) {
     <div id={cod} className={style} onClick={onClick}>
       <div className="flex h-16 flex-row items-center">
         <p className="text-xs font-bold mx-auto">{name}</p>
-        <NavLink to={"/Curriculum/" + cod + "-" + credits + "-" + name}>
+        <NavLink to={"/Curriculum/" + cod + "-" + credits + "-" + name + "-" + version}>
           <IconButton aria-label="Example">
             <FontAwesomeIcon icon={faEllipsisV} />
           </IconButton>
