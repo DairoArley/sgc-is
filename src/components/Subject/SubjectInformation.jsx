@@ -22,7 +22,6 @@ import { get } from "react-hook-form";
 const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
   const [respuesta, setRespuesta] = useState(valoresIniciales);
 
-
   const [valoresFinales, setValoresFinales] = useState();
 
   const [spinner, setSpinner] = useState(false);
@@ -49,9 +48,9 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
     } else {
       arrayContenido = respuesta.ccontenido;
     }
-    
-    const values =  {
-      unidadAcademica:respuesta.unidadAcademica,
+
+    const values = {
+      unidadAcademica: respuesta.unidadAcademica,
       programaAcademico: respuesta.programaAcademico,
       programAcademicoOfertado: respuesta.programaOferta,
       areaUdeA: respuesta.areaUdea,
@@ -82,14 +81,12 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
       nrHoras: respuesta.numeroHoras,
       fechaModificacion: respuesta.fecha,
     };
-
     setValoresFinales(values);
   };
 
   const consultar = async () => {
     let r = await validarExistencia(data[0]);
-    if(r.idMateria !==null) transformarRespuesta(r);
-
+    if (r.idMateria !== null) transformarRespuesta(r);
   };
 
   useEffect(() => {
@@ -119,61 +116,125 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
     let dataToSave = Object.values(info);
     dataToSave[13] = dataToSave[13].join("-");
     dataToSave[22] = dataToSave[22].join("-");
-    console.log(dataToSave);
-    //et()
-    if (respuesta !== valoresIniciales) {
-      console.log("MICROCURRICULO EXISTENTE");
-    } else {
-      await fetch("http://192.168.30.80:8080/microcurriculo/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          codMicrocurriculo: dataToSave[7],
-          idMateria: dataToSave[7],
-          resultadoaprendizaje: dataToSave[21],
-          tipoContenido: dataToSave[11],
-          cproposito: dataToSave[17],
-          cjustificacion: dataToSave[17],
-          cobjetivoGeneral: dataToSave[18],
-          elaboro: 0,
-          unidadAcademica: dataToSave[0],
-          programaAcademico: dataToSave[2],
-          vigencia: dataToSave[6],
-          codigoCurso: dataToSave[7],
-          nombreCurso: dataToSave[8],
-          areaUdea: dataToSave[3],
-          nucleoPrograma: dataToSave[4],
-          areaPrograma: dataToSave[5],
-          regimen: dataToSave[12],
-          creditos: dataToSave[9],
-          horasDocenciaDirecta: dataToSave[10],
-          horasTrabajoIndependiente: dataToSave[14],
-          caracteristicaCurso: dataToSave[13],
-          correo: dataToSave[16],
-          objetivoEspecifico: dataToSave[19],
-          dependencia: dataToSave[24],
-          formacionAcademica: dataToSave[25],
-          modalidad: dataToSave[26],
-          unidad: dataToSave[27],
-          numeroHoras: dataToSave[28],
-          fecha: dataToSave[29],
-          programaOferta: dataToSave[2],
-          profesor: dataToSave[23],
-          ccontenido: dataToSave[22],
-          cmetodologia: dataToSave[20],
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("RR ", data);
-        });
+    for (let index = 0; index < dataToSave.length; index++) {
+      if (typeof dataToSave[index] === "number" && index !== 15) {
+        dataToSave[index] = dataToSave[index].toString();
+      }
     }
+
+    dataToSave[7] = parseInt(dataToSave[7]);
+
+    await fetch("http://192.168.30.80:8080/microcurriculo/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        codMicrocurriculo: dataToSave[7],
+        idMateria: dataToSave[7],
+        resultadoaprendizaje: dataToSave[21],
+        tipoContenido: dataToSave[11],
+        cproposito: dataToSave[17],
+        cjustificacion: dataToSave[17],
+        cobjetivoGeneral: dataToSave[18],
+        elaboro: dataToSave[15],
+        unidadAcademica: dataToSave[0],
+        programaAcademico: dataToSave[2],
+        vigencia: dataToSave[6],
+        codigoCurso: dataToSave[7],
+        nombreCurso: dataToSave[8],
+        areaUdea: dataToSave[3],
+        nucleoPrograma: dataToSave[4],
+        areaPrograma: dataToSave[5],
+        regimen: dataToSave[12],
+        creditos: dataToSave[9],
+        horasDocenciaDirecta: dataToSave[10],
+        horasTrabajoIndependiente: dataToSave[14],
+        caracteristicaCurso: dataToSave[13],
+        correo: dataToSave[16],
+        objetivoEspecifico: dataToSave[19],
+        dependencia: dataToSave[24],
+        formacionAcademica: dataToSave[25],
+        modalidad: dataToSave[26],
+        unidad: dataToSave[27],
+        numeroHoras: dataToSave[28],
+        fecha: dataToSave[29],
+        programaOferta: dataToSave[2],
+        profesor: dataToSave[23],
+        ccontenido: dataToSave[22],
+        cmetodologia: dataToSave[20],
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Guardado exitoso");
+      });
+  };
+
+  const actualizarDatos = async (info, setSubmitting) => {
+    let dataToSave = Object.values(info);
+    dataToSave[13] = dataToSave[13].join("-");
+    dataToSave[22] = dataToSave[22].join("-");
+    for (let index = 0; index < dataToSave.length; index++) {
+      if (typeof dataToSave[index] === "number" && index !== 15) {
+        dataToSave[index] = dataToSave[index].toString();
+      }
+    }
+    dataToSave[7] = parseInt(dataToSave[7]);
+
+    await fetch("http://192.168.30.80:8080/microcurriculo/update", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        codMicrocurriculo: dataToSave[7],
+        idMateria: dataToSave[7],
+        resultadoaprendizaje: dataToSave[21],
+        tipoContenido: dataToSave[11],
+        cproposito: dataToSave[17],
+        cjustificacion: dataToSave[17],
+        cobjetivoGeneral: dataToSave[18],
+        elaboro: dataToSave[15],
+        unidadAcademica: dataToSave[0],
+        programaAcademico: dataToSave[2],
+        vigencia: dataToSave[6],
+        codigoCurso: dataToSave[7],
+        nombreCurso: dataToSave[8],
+        areaUdea: dataToSave[3],
+        nucleoPrograma: dataToSave[4],
+        areaPrograma: dataToSave[5],
+        regimen: dataToSave[12],
+        creditos: dataToSave[9],
+        horasDocenciaDirecta: dataToSave[10],
+        horasTrabajoIndependiente: dataToSave[14],
+        caracteristicaCurso: dataToSave[13],
+        correo: dataToSave[16],
+        objetivoEspecifico: dataToSave[19],
+        dependencia: dataToSave[24],
+        formacionAcademica: dataToSave[25],
+        modalidad: dataToSave[26],
+        unidad: dataToSave[27],
+        numeroHoras: dataToSave[28],
+        fecha: dataToSave[29],
+        programaOferta: dataToSave[2],
+        profesor: dataToSave[23],
+        ccontenido: dataToSave[22],
+        cmetodologia: dataToSave[20],
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        window.location.href = window.location.href;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+       });
   };
 
   const onSubmit = async (values, setSubmitting) => {
-    //setSubmitting(false);
     let data = values;
-    guardarDatos(data, setSubmitting);
+    if (valoresFinales !== undefined) {
+      actualizarDatos(data, setSubmitting);
+    } else {
+      guardarDatos(data, setSubmitting);
+    }
   };
 
   return (
@@ -187,7 +248,7 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
           <Formik
             initialValues={valoresFinales || respuesta}
             onSubmit={(values, { setSubmitting }) => {
-              setSubmitting(true);
+              setSubmitting(false);
               onSubmit(values, setSubmitting);
             }}
             enableReinitialize
@@ -254,7 +315,7 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
                     </AccordionDetails>
                   </Accordion>
 
-                  <div className="text-center">  
+                  <div className="text-center">
                     <Button type="submit" disabled={isSubmitting}>
                       Guardar
                     </Button>

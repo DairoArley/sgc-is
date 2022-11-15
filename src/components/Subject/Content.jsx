@@ -28,7 +28,7 @@ const Content = ({ valuesB, readOnly }) => {
                   />  */}
                 
                       <Field
-                        className="border-2 rounded-lg m-auto h-14 hover:bg-preColor"
+                        className="border-2 rounded-lg m-auto h-14 hover:bg-preColor text-center"
                         name={`contenido[${index}]`}
                       />
   

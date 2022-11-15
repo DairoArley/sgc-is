@@ -23,7 +23,7 @@ export const valoresIniciales = {
   objetivoEspecifico: "",
   metodologia: "",
   resultadosAprendizaje: "",
-  contenido: ['discretas 1', 'discretas 2'],
+  contenido: ["primer contenido"],
   nombreProfesor: "",
   dependencia: "",
   formacionAcademica: "",

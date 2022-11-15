@@ -149,11 +149,11 @@ const General = ({ dataSubject, values, readOnly }) => {
         />
         <Input
           name="profesor"
-          type="text"
+          type="number"
           disabled={readOnly}
           placeholder="Ingrese el nombre del profesor"
           value={values}
-          label="Profesor que elaboró"
+          label="Documento del Profesor que elaboró"
         />
         <Input
           name="correo"
