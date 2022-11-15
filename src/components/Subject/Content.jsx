@@ -1,11 +1,9 @@
-import { FieldArray } from "formik";
+import { Field, FieldArray } from "formik";
 import React from "react";
 import Input from "../inputs/Input";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const Content = ({ valuesB, readOnly }) => {
-
-
   return (
     <div>
       <FieldArray name="contenido">
@@ -16,37 +14,44 @@ const Content = ({ valuesB, readOnly }) => {
           const { contenido } = values;
           return (
             <div>
-              {
-              contenido.map((contenido, index) => (
+              {contenido.map((content, index) => (
                 <div key={index}>
-                    <div className="lg:w-1/2 flex flex-col lg:flex-row mx-auto">
-                    <Input
+                  <div className="lg:w-1/2 flex flex-col lg:flex-row mx-auto h-24">
+                    {/* <Input
+                    id="contenido"
                     name={`contenido[${index}]`}
                     type="text"
                     disabled={readOnly}
                     placeholder="Ingrese el contenido"
-                    value={values}
+                    value={contenido[index]}
                     label={"Unidad número: "+ (index)}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => push(index)}
-                    className="bg-textColor text-white border-2 rounded-lg w-40 lg:mt-8 mt-2"
-                  >
-                    Agregar
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                        if(index > 0) remove(index) } 
-                    }
-                    className="bg-textColor text-white border-2 rounded-lg w-40 lg:mt-8 mt-2"
-                  >
-                    Eliminar
-                  </button>
+                  />  */}
+                
+                      <Field
+                        className="border-2 rounded-lg m-auto h-14 hover:bg-preColor"
+                        name={`contenido[${index}]`}
+                      />
+  
+
+                    <div className="flex flex-row items-center justify-center mx-5">
+                      <button
+                        type="button"
+                        onClick={() => push(index)}
+                        className="bg-textColor text-white border-2 rounded-lg w-32"
+                      >
+                        Agregar
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (index > 0) remove(index);
+                        }}
+                        className="bg-textColor text-white border-2 rounded-lg w-32"
+                      >
+                        Eliminar
+                      </button>
                     </div>
-                  
-                  
+                  </div>
                 </div>
               ))}
             </div>

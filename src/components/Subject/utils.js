@@ -33,15 +33,17 @@ export const valoresIniciales = {
   fechaModificacion: "",
 };
 
+
+
 export const valoresIniciales2={
   versionMalla:""
 }
 
 
  export const opcionesTipoArea = [
-    { value: "BásicaC", label: "Básica / Ciencia" },
-    { value: "BásicaIng", label: "Básica / Ing"},
-    { value: "Específica", label: "Específica / Prof" },
+    { value: "Básica / Ciencia", label: "Básica / Ciencia" },
+    { value: "Básica / Ing", label: "Básica / Ing"},
+    { value: "Específica / Prof", label: "Específica / Prof" },
     { value: "Investigación", label: "Investigación" },
     { value: "Complementaria", label: "Complementaria" },
   ]

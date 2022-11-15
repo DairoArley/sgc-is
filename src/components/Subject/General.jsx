@@ -19,7 +19,10 @@ const General = ({ dataSubject, values, readOnly }) => {
   newValues.codigo = codigo;
   newValues.creditos = creditos;
   newValues.nombre = nombre;
+
   values = newValues;
+
+ 
 
   return (
     <div>
