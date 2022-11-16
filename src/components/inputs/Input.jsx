@@ -29,7 +29,7 @@ const Input = ({
       />
     </label>
     {errors[name] && touched[name] ? (
-      <span className="text-red-500 text-sm m-0 px-2">{errors[name]}</span>
+      <span className="text-red text-sm m-0 px-2">{errors[name]}</span>
     ) : null}
   </div>
 )};

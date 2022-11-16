@@ -27,8 +27,9 @@ const Content = ({ valuesB, readOnly }) => {
                     label={"Unidad número: "+ (index)}
                   />  */}
                 
-                      <Field
-                        className="border-2 rounded-lg m-auto h-14 hover:bg-preColor text-center"
+                      <Field autoComplete="off"
+                        readOnly={readOnly} 
+                        className="border-2 rounded-lg m-auto h-14 hover:bg-preColor text-center lg:w-full sm:w-32"
                         name={`contenido[${index}]`}
                       />
   
@@ -36,6 +37,7 @@ const Content = ({ valuesB, readOnly }) => {
                     <div className="flex flex-row items-center justify-center mx-5">
                       <button
                         type="button"
+                        disabled={readOnly}
                         onClick={() => push(index)}
                         className="bg-textColor text-white border-2 rounded-lg w-32"
                       >
@@ -43,6 +45,7 @@ const Content = ({ valuesB, readOnly }) => {
                       </button>
                       <button
                         type="button"
+                        disabled={readOnly}
                         onClick={() => {
                           if (index > 0) remove(index);
                         }}

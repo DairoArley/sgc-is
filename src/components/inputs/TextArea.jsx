@@ -7,7 +7,7 @@ const TextArea = ({
   value,
   placeholder,
   type,
-  disabled = false,
+  disabled,
 }) => {
   const { errors, touched, handleBlur, handleChange } = useFormikContext();
   return (
@@ -25,11 +25,11 @@ const TextArea = ({
           value={value[name]}
           type={type}
           autoComplete="off"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white h-24"
+          className="bg-gray-50 text-justify border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white h-24"
         />
       </label>
       {errors[name] && touched[name] ? (
-        <span className="text-red-500 text-sm m-0 px-2">{errors[name]}</span>
+        <span className="text-red text-sm m-0 px-2">{errors[name]}</span>
       ) : null}
     </div>
   );

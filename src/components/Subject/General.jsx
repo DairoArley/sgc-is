@@ -33,7 +33,7 @@ const General = ({ dataSubject, values, readOnly }) => {
           disabled={readOnly}
           placeholder="Ingrese la unidad academica"
           value={values}
-          label="Unidad Academica"
+          label="Unidad Académica"
         />
         <Input
           name="programaAcademico"
@@ -41,7 +41,7 @@ const General = ({ dataSubject, values, readOnly }) => {
           placeholder="Ingrese la programa academico"
           value={values}
           disabled={readOnly}
-          label="programa Academico"
+          label="programa Académico"
         />
         <Input
           name="programAcademicoOfertado"
@@ -59,18 +59,21 @@ const General = ({ dataSubject, values, readOnly }) => {
           label="Área UdeA"
           opciones={opcionesTipoArea}
           value={values}
+          disabled={readOnly}
         />
         <SelectInput
           name="nucleo"
           label="Núcleo programa"
           opciones={opcionesTipoNucleo}
           value={values}
+          disabled={readOnly}
         />
         <SelectInput
           name="areaPrograma"
           label="Área del programa"
           opciones={opcionesTipoAreaPrograma}
           value={values}
+          disabled={readOnly}
         />
       </div>
 
@@ -122,12 +125,14 @@ const General = ({ dataSubject, values, readOnly }) => {
           label="Tipo de curso"
           opciones={opcionesTipoTipo}
           value={values}
+          disabled={readOnly}
         />
         <SelectInput
           name="regimenCurso"
           label="Régimen del curso"
           opciones={opcionesTipoRegimen}
           value={values}
+          disabled={readOnly}
         />
         <SelectInput
           name="caracteristica"
@@ -135,6 +140,7 @@ const General = ({ dataSubject, values, readOnly }) => {
           label="Caracteristica del curso"
           opciones={opcionesTipoCaracteristica}
           value={values}
+          disabled={readOnly}
         />
         
       </div>

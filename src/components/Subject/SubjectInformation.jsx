@@ -1,31 +1,23 @@
-import GeneralInformation from "./GeneralInformation";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import SpecificInformation from "./SpecificInformation";
-import ContentSubjects from "./ContentSubjects";
-import TeachersInformation from "./TeachersInformation";
 import Button from "@mui/material/Button";
 import { Formik } from "formik";
 import General from "./General";
 import { RingLoader } from "react-spinners";
-
+import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import { esquemaValidacion, valoresIniciales } from "./utils";
 import Especific from "./Especific";
 import Content from "./Content";
 import Teacher from "./Teacher";
-import { get } from "react-hook-form";
 
 const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
   const [respuesta, setRespuesta] = useState(valoresIniciales);
-
   const [valoresFinales, setValoresFinales] = useState();
-
   const [spinner, setSpinner] = useState(false);
-
   const data = idSubjectSelected.split("-");
 
   const transformarRespuesta = (respuesta) => {
@@ -34,9 +26,9 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
     const flag = caracteristicas.includes("-");
 
     if (flag) {
-      arrayCaracteristicas = respuesta.caracteristicaCurso.split("-");
+      arrayCaracteristicas = caracteristicas.split("-");
     } else {
-      arrayCaracteristicas = respuesta.caracteristicaCurso;
+      arrayCaracteristicas.push(caracteristicas);
     }
 
     let arrayContenido = [];
@@ -81,6 +73,8 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
       nrHoras: respuesta.numeroHoras,
       fechaModificacion: respuesta.fecha,
     };
+
+    console.log("Caracteristicas ", typeof values.caracteristica);
     setValoresFinales(values);
   };
 
@@ -112,7 +106,6 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
   };
 
   const guardarDatos = async (info, setSubmitting) => {
-    //setSubmitting(false);
     let dataToSave = Object.values(info);
     dataToSave[13] = dataToSave[13].join("-");
     dataToSave[22] = dataToSave[22].join("-");
@@ -121,9 +114,7 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
         dataToSave[index] = dataToSave[index].toString();
       }
     }
-
     dataToSave[7] = parseInt(dataToSave[7]);
-
     await fetch("http://192.168.30.80:8080/microcurriculo/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -165,7 +156,13 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Guardado exitoso");
+        console.log(data)
+        setSubmitting(false);
+        toast.success("Microcurriculo guardado con exito");
+      })
+      .catch((error) => {
+        setSubmitting(false);
+        toast.error("Error al guardar el microcurriculo");
       });
   };
 
@@ -178,8 +175,8 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
         dataToSave[index] = dataToSave[index].toString();
       }
     }
+    console.log(dataToSave[22]);
     dataToSave[7] = parseInt(dataToSave[7]);
-
     await fetch("http://192.168.30.80:8080/microcurriculo/update", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -221,11 +218,12 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        window.location.href = window.location.href;
+        setSubmitting(false);
+        toast.success("Microcurriculo actualizado con exito");
       })
       .catch((error) => {
-        console.error("Error:", error);
-       });
+        toast.error("Error al actualizar el microcurriculo");
+      });
   };
 
   const onSubmit = async (values, setSubmitting) => {
@@ -248,7 +246,7 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
           <Formik
             initialValues={valoresFinales || respuesta}
             onSubmit={(values, { setSubmitting }) => {
-              setSubmitting(false);
+              setSubmitting(true);
               onSubmit(values, setSubmitting);
             }}
             enableReinitialize
@@ -315,10 +313,13 @@ const SubjectInformation = ({ idSubjectSelected, readOnly }) => {
                     </AccordionDetails>
                   </Accordion>
 
+                 
                   <div className="text-center">
-                    <Button type="submit" disabled={isSubmitting}>
+                    {!readOnly && (
+                      <Button type="submit" disabled={isSubmitting}>
                       Guardar
                     </Button>
+                    )}
                   </div>
                 </form>
               );

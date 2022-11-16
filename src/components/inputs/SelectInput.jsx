@@ -10,7 +10,7 @@ const SelectInput = ({
   name,
   value,
   opciones,
-  disabled = false,
+  disabled,
   multiple = false,
 }) => {
   const { errors, touched, handleBlur, handleChange, setFieldValue } = useFormikContext();
@@ -46,6 +46,7 @@ const SelectInput = ({
       onChange={onChange}
       options={opciones}
       isMulti={multiple}
+      isDisabled={disabled}
     />
       {/* <Field
         as="select"
@@ -66,7 +67,7 @@ const SelectInput = ({
       </Field> */}
     </label>
     {errors[name] && touched[name] ? (
-      <span className="text-red-500 text-sm m-0 px-2">{errors[name]}</span>
+      <span className="text-red text-sm m-0 px-2">{errors[name]}</span>
     ) : null}
   </div>
 )};

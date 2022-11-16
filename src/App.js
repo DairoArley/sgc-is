@@ -7,10 +7,13 @@ import Malla from "./pages/mallaCurricular/Malla";
 import Curriculum from "./components/Subject/Curriculum";
 import { Person } from "./pages/personaList/Person";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
     <>
+    <ToastContainer />
       <Topbar />
       <div className="w-full flex">
         <Sidebar />
@@ -22,7 +25,7 @@ function App() {
           <Route
             exact
             path="/curriculum/:id"
-            element={<Curriculum role="Admin" />}
+            element={<Curriculum role="student" />}
           />
         </Routes>
       </div>
