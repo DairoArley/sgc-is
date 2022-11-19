@@ -10,8 +10,8 @@ const Curriculum = ({role}) => {
     return (
     <div className='mx-auto sm:w-2/4  md:w-full border-r-amber-200 border-2 font-sans'>
         <br />
-        {role==='Admin' && <SubjectInformation idSubjectSelected = {id} readOnly= 'false'/>}
-        {role==='student' && <StudentView idSubjectSelected = {id} readOnly='true'/>}
+        {role==='Admin' && <SubjectInformation idSubjectSelected = {id}/>}
+        {role==='student' && <SubjectInformation idSubjectSelected = {id} readOnly/>}
     </div>
   )
 }

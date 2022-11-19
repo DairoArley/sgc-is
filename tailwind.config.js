@@ -24,6 +24,7 @@ module.exports = {
       corColor: "#ffc656",
       cardSubjectColor: "#f3f3f3",
       black: "#000",
+      red:"#E53C17",
     },
     extend: {},
   },
